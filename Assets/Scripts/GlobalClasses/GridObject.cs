@@ -7,7 +7,7 @@ public class GridObject {
     private GridXZ<GridObject> g;
     private int x;
     private int z;
-    private Transform tile;
+    private Transform land;
 
     public GridObject(GridXZ<GridObject> g, int x, int z) {
         this.g = g;
@@ -15,20 +15,20 @@ public class GridObject {
         this.z = z;
     }
 
-    public void SetTile(Transform tile) {
-        if(CanCreateTile()) this.tile = tile;
+    public void SetLand(Transform land) {
+        if(CanCreateLand()) this.land = land;
     }
 
-    public Transform GetTile() {
-        return this.tile;
+    public Transform GetLand() {
+        return this.land;
     }
 
-    public void ClearTile() {
-        tile = null;
+    public void ClearLand() {
+        land = null;
     }
 
-    public bool CanCreateTile() {
-        return tile == null;
+    public bool CanCreateLand() {
+        return land == null;
     }
 
     public int GetX() {

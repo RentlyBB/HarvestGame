@@ -1,21 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class CropSelection : MonoBehaviour {
 
-    public CropSO cropToSelect;
+    private CropSO[] crops;
+    public GameObject buttonPrefab;
 
-    private TextMeshProUGUI text;
     private void Start() {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        text.text = cropToSelect.name;
-    }
+        crops = Resources.LoadAll<CropSO>("Crops");
 
-    public void Select() {
-        EditorManager.Instance.selectedCrop = cropToSelect;
-        EditorManager.Instance.placeMode = PlaceModes.CropMode;
+        foreach(CropSO crop in crops) {
+            GameObject newButton = Instantiate(buttonPrefab);
+            newButton.transform.SetParent(transform, false);
+            newButton.GetComponent<CropButton>().cropToSelect = crop;
+        }
     }
 }

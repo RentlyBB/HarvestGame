@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd79b11b3bac0b045a28da863271109a, type: 3}
-  m_Name: DefaultTile
+  m_Script: {fileID: 11500000, guid: 8fa8aff030651064b95f6a35feb59002, type: 3}
+  m_Name: LandV2
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3991720372770425337, guid: fb19da913c2da2144a799aa5d3b5cf07,
+  landPrefab: {fileID: 6062324891783145108, guid: 35a9e6ba062375e439b50df9d98ca81b,
     type: 3}

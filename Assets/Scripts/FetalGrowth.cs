@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FetalGrowth : MonoBehaviour, ITileHandler {
+public class FetalGrowth : MonoBehaviour, ILandHandler {
 
     [SerializeField] private CropSO crop;
 
@@ -61,6 +61,4 @@ public class FetalGrowth : MonoBehaviour, ITileHandler {
     public int GetCurrentPhase() {
         return currentPhase;
     }
-
-    public void GrowthUp() => throw new System.NotImplementedException();
 }

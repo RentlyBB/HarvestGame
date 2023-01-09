@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-
-public interface ITileHandler  {
+public interface ILandHandler  {
 
     public void SpawnCrop();
-    public void GrowthUp();
     public void SetCrop(CropSO crop, int currentPhase);
     public CropSO GetCrop();
  
-
 }

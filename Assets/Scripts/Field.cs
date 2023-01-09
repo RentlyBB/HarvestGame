@@ -64,7 +64,7 @@ public class Field : MonoBehaviour {
 
                 if(tileData != null) fetalGrowthScipt.SetCrop(tileData.GetCrop(), tileData.GetCurrentPhase());
 
-                grid.GetGridObject(x, z).SetTile(tile);
+                grid.GetGridObject(x, z).SetLand(tile);
 
             }
         }
@@ -83,7 +83,7 @@ public class Field : MonoBehaviour {
 
     private void HarverstTile(Vector3 worldPosition) {
         var gridObject = grid.GetGridObject(worldPosition);
-        var tile = gridObject.GetTile();
+        var tile = gridObject.GetLand();
         var fetalGrowth = tile.GetComponent<FetalGrowth>();
 
         if(fetalGrowth.canSpawnCrop == false && GameManager.Instance.level.seeds > 0) {

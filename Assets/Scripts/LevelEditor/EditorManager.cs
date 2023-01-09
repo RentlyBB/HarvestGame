@@ -5,70 +5,103 @@ using UnityEditor;
 using System;
 
 public enum PlaceModes { 
-    TileMode,
+    LandMode,
     CropMode
 }
 
 public class EditorManager : Singleton<EditorManager>{
 
-    public LevelSO editingLevel;
+    public delegate void OnCreateNewLevel();
+    public static event OnCreateNewLevel onCreateNewLevel;
 
-    public TileSO selectedTile;
+    [SerializeField] public LevelDataSO editingLevel;
+
+    public LandSO selectedLand;
     public CropSO selectedCrop;
+
+    public GridXZ<GridObject> grid;
 
     [Header("0 - Place Tile | 1 - Place Crop")]
     public PlaceModes placeMode;
 
-    public void Place(GridObject gridObject, GridXZ<GridObject> grid) {
+    public void Place(GridObject gridObject) {
 
         switch(placeMode) {
-            case PlaceModes.TileMode:
-                PlaceTileOnGrid(gridObject, grid);
+            case PlaceModes.LandMode:
+                PlaceLandOnGrid(gridObject);
                 break;
             case PlaceModes.CropMode:
-                PlaceCropOnTile(gridObject, grid);
+                PlaceCropOnLand(gridObject);
                 break;
         }
     }
     
-    private void PlaceTileOnGrid(GridObject gridObject, GridXZ<GridObject> grid) {
-        if(selectedTile != null) {
+    private void PlaceLandOnGrid(GridObject gridObject) {
+        if(selectedLand != null) {
             GameObject obj;
-            if(gridObject.CanCreateTile()) {
-                obj = Instantiate(selectedTile.tilePrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
-                gridObject.ClearTile();
-                gridObject.SetTile(obj.transform);
+            if(gridObject.CanCreateLand()) {
+                obj = Instantiate(selectedLand.landPrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
+                gridObject.ClearLand();
+                gridObject.SetLand(obj.transform);
+                editingLevel.SetLandToLevel(gridObject.GetX(), gridObject.GetZ(), selectedLand);
+            
             }
         }
     }
 
-    private void PlaceCropOnTile(GridObject gridObject, GridXZ<GridObject> grid) {
+    private void PlaceCropOnLand(GridObject gridObject) {
         if(selectedCrop != null) {
-            if(!gridObject.CanCreateTile()) { 
-                var tile = gridObject.GetTile();
+            if(!gridObject.CanCreateLand()) { 
+                var land = gridObject.GetLand();
 
-                var tileHandler = tile.GetComponent<ITileHandler>();
+                var landHandler = land.GetComponent<ILandHandler>();
 
-                tileHandler.SetCrop(selectedCrop, 0);
-                tileHandler.SpawnCrop();
+                if(landHandler.GetCrop() != null) return;
+
+                landHandler.SetCrop(selectedCrop, 0);
+                landHandler.SpawnCrop();
+                editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
 
             }
-            //var tileScript = gridObject.GetTile().GetComponent<ITileHandler>();
+        }
+    }
+
+    public void RemoveTileFromGrid(GridObject gridObject) {
+        if(!gridObject.CanCreateLand()) {
+            Destroy(gridObject.GetLand().gameObject);
+            gridObject.ClearLand();
+            editingLevel.RemoveLand(gridObject.GetX(), gridObject.GetZ());
+
         }
     }
 
     public void CreateNewLevel() {
-        editingLevel = ScriptableObject.CreateInstance<LevelSO>();
-        string path = "Assets/Levels/" + CreateFileName() + ".asset";
+        editingLevel = ScriptableObject.CreateInstance<LevelDataSO>();
+        string path = "Assets/Resources/Levels/" + CreateFileName() + ".asset";
         AssetDatabase.CreateAsset(editingLevel, path);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        EditorUtility.SetDirty(editingLevel);
         EditorUtility.FocusProjectWindow();
+
+        editingLevel.width = 3;
+        editingLevel.height = 3;
+        editingLevel.InitEmptyLevel();
+        ClearLevel();
+
+        onCreateNewLevel?.Invoke();
 
     }
 
-    public void SaveLevel() { 
-        // Save level
+    public void ClearLevel() {
+        var _x = grid.GetWidth();
+        var _z = grid.GetHeight();
+
+        for(int x = 0; x < _x; x++) {
+            for(int z = 0; z < _z; z++) {
+                RemoveTileFromGrid(grid.GetGridObject(x, z));
+            }
+        }
     }
 
     private string CreateFileName() {

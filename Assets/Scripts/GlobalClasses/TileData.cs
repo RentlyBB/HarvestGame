@@ -7,7 +7,7 @@ public class TileData {
     [SerializeField] private int x;
     [SerializeField] private int z;
     [SerializeField] private CropSO crop;
-    [SerializeField] private Transform tile_prefab;
+    [SerializeField] private LandSO land;
     [SerializeField] private int currentPhase;
 
     public TileData(int x, int z) {
@@ -31,12 +31,12 @@ public class TileData {
         return crop;
     }
 
-    public void SetTile(Transform tile_prefab) {
-        this.tile_prefab = tile_prefab;
+    public void SetLand(LandSO land) {
+        this.land = land;
     }
 
-    public Transform GetTile() {
-        return tile_prefab;
+    public LandSO GetLand() {
+        return land;
     }
 
     public int GetCurrentPhase() {
