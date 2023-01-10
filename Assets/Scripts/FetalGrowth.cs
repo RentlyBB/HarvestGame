@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FetalGrowth : MonoBehaviour, ILandHandler {
+public class FetalGrowth : Farmland {
 
-    [SerializeField] private CropSO crop;
-
-    public bool canSpawnCrop = false;
-
-    private int currentPhase;
 
     private void OnEnable() {
         Field.onGridInit += SpawnCrop;
@@ -20,20 +15,15 @@ public class FetalGrowth : MonoBehaviour, ILandHandler {
         GridMovement.onMovementEnds -= GrowthUp;
     }
 
-    public void SpawnCrop() {
 
-        if(!canSpawnCrop) return;
+    protected override void OnStart() {
+        base.OnStart();
 
-        if(transform.childCount != 0) {
-            Destroy(transform.GetChild(0).gameObject);
-        }
 
-        var currentCropPrefab = Instantiate(crop.phasePrefabs[currentPhase], transform.position, Quaternion.identity);
-        currentCropPrefab.position = new Vector3(currentCropPrefab.position.x, 0.1f, currentCropPrefab.position.z);
-        currentCropPrefab.SetParent(transform);
     }
 
     // Vector3 worldPosition is useless in this case
+    // GrowthUp method will be in CropBehaviour
     private void GrowthUp(Vector3 worldPosition) {
         if(crop != null && currentPhase < crop.phasePrefabs.Count - 1) {
             currentPhase++;
@@ -46,16 +36,6 @@ public class FetalGrowth : MonoBehaviour, ILandHandler {
             Destroy(transform.GetChild(0).gameObject);
             canSpawnCrop = false;
         }
-    }
-
-    public void SetCrop(CropSO crop, int currentPhase) {
-        this.crop = crop;
-        this.currentPhase = currentPhase;
-        canSpawnCrop = true;
-    }
-
-    public CropSO GetCrop() {
-        return crop;
     }
 
     public int GetCurrentPhase() {

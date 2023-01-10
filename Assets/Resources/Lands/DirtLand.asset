@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fa8aff030651064b95f6a35feb59002, type: 3}
-  m_Name: LandV2
+  m_Name: DirtLand
   m_EditorClassIdentifier: 
-  landPrefab: {fileID: 6062324891783145108, guid: 35a9e6ba062375e439b50df9d98ca81b,
+  landPrefab: {fileID: 6476319157060823691, guid: ac1f617a262964d488cd94aa753c1763,
     type: 3}

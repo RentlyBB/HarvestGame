@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public interface IPlantable {
+public class Carrot : Plantable {
 
-     
+    
+
 }

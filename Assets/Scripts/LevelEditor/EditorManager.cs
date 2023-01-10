@@ -54,12 +54,13 @@ public class EditorManager : Singleton<EditorManager>{
             if(!gridObject.CanCreateLand()) { 
                 var land = gridObject.GetLand();
 
-                var landHandler = land.GetComponent<ILandHandler>();
+                var plantable = land.GetComponent<Farmland>();
 
-                if(landHandler.GetCrop() != null) return;
+                if(plantable == null) return;
+                if(plantable.GetCrop() != null) return;
 
-                landHandler.SetCrop(selectedCrop, 0);
-                landHandler.SpawnCrop();
+                plantable.SetCrop(selectedCrop, 0);
+                plantable.SpawnCrop();
                 editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
 
             }
@@ -91,6 +92,14 @@ public class EditorManager : Singleton<EditorManager>{
 
         onCreateNewLevel?.Invoke();
 
+    }
+
+    public void SaveLevel() {
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        EditorUtility.SetDirty(editingLevel);
+        EditorUtility.FocusProjectWindow();
+        Debug.Log("Level Saved!");
     }
 
     public void ClearLevel() {

@@ -73,8 +73,9 @@ public class FieldEditor : MonoBehaviour {
                     if(tileData.GetLand() != null) {
                         var land = Instantiate(tileData.GetLand().landPrefab, grid.GetWorldPositionCellCenter(x, z), Quaternion.identity);
                         if(tileData.GetCrop() != null) {
-                            land.GetComponent<ILandHandler>().SetCrop(tileData.GetCrop(), 0);
-                            land.GetComponent<ILandHandler>().SpawnCrop();
+                            var plantable = land.GetComponent<Farmland>();
+                            plantable.SetCrop(tileData.GetCrop(), 0);
+                            plantable.SpawnCrop();
                         }
                         gridObject.ClearLand();
                         gridObject.SetLand(land);
