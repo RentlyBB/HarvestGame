@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GridMovement : MonoBehaviour {
 
-    public delegate void OnMovementEnds(Vector3 worldPosition = default(Vector3));
-    public static event OnMovementEnds onMovementEnds;
+    public delegate void GrowthEvent();
+    public static event GrowthEvent growthEvent;
+
+    public delegate void HarvestEvent();
+    public static event HarvestEvent harvestEvent;
+
+    public delegate void PlantEvent();
+    public static event PlantEvent plantEvent;
 
     [SerializeField] private List<Vector3> nextMoves;
     [SerializeField] private float speed;
@@ -18,22 +24,29 @@ public class GridMovement : MonoBehaviour {
     }
 
     private void OnEnable() {
-        Field.clickedOnTile += calculateNextMove;
+        Field.clickedOnTile += CalculateNextMove;
     }
 
     private void OnDisable() {
-        Field.clickedOnTile -= calculateNextMove;
+        Field.clickedOnTile -= CalculateNextMove;
     }
 
     private void Update() {
         if(nextMoves.Count == 0) canMove = false;
-        processMovement();
+        ProcessMovement();
     }
 
-    private void calculateNextMove(GridXZ<GridObject> grid, Vector3 mouseWorldPositon) {
-       
+    private void CalculateNextMove(GridXZ<GridObject> grid, Vector3 mouseWorldPositon) {
+
         // Calcuate world position of the cell by mouse position
         Vector3 worldPosition = grid.GetWorldPositionCellCenter(mouseWorldPositon);
+
+        var gridObject = grid.GetGridObject(worldPosition);
+
+        //Check if the land is walkable
+        if(!CheckIfWalkable(gridObject)) {
+            return;
+        }
 
         // Get XZ coords of the next cell
         grid.GetXZ(mouseWorldPositon, out int nextX, out int nextZ);
@@ -47,13 +60,13 @@ public class GridMovement : MonoBehaviour {
         }
 
         //check if next movement is valid
-        if(validateNextMove(lastX, lastZ, nextX, nextZ)) {
+        if(ValidateNextMove(lastX, lastZ, nextX, nextZ)) {
             nextMoves.Add(worldPosition);
             canMove = true;
         }
     }
     
-    private void processMovement() {
+    private void ProcessMovement() {
 
         if(canMove) {
             var step = speed * Time.deltaTime;
@@ -62,13 +75,32 @@ public class GridMovement : MonoBehaviour {
 
             if(Vector3.Distance(transform.position, target) < 0.001f) {
                 lastPosition = nextMoves[0];
-                onMovementEnds?.Invoke(lastPosition);
+
+                plantEvent?.Invoke();
+
+                harvestEvent?.Invoke();
+
+                growthEvent?.Invoke();
+
                 nextMoves.RemoveAt(0);
             }
         } 
     }
 
-    private bool validateNextMove(int lastX, int lastZ, int nextX, int nextZ) {
+    private bool CheckIfWalkable(GridObject gridObject) {
+
+        if(gridObject == null) return false;
+
+        var walkable = gridObject.GetLand().GetComponent<Walkable>();
+
+        if(walkable != null && walkable.IsWalkable()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool ValidateNextMove(int lastX, int lastZ, int nextX, int nextZ) {
 
         //Check if we are already on tile
         if(lastX == nextX && lastZ == nextZ) return false;

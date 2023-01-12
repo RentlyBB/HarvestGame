@@ -3,60 +3,55 @@ using UnityEngine;
 
 public abstract class Farmland : MonoBehaviour {
 
-    //Temporary
-    [SerializeField] protected CropSO crop;
+    [Header("Crop planted on the land. Can be null.")]
+    [SerializeField] protected Transform crop;
 
-    //TODO: Rename it to crop after refactor
-    [SerializeField] protected Transform cropObject;
+    public Transform plantCropTest;
 
-
-    //Temporary
-    public bool canSpawnCrop = false;
-    public bool canPlantCrop = false;
-
-    //Temporary
-    protected int currentPhase;
+    public delegate void OnHarvest();
+    public static event OnHarvest onHarvest;
 
     private void Start() {
         OnStart();
     }
 
     protected virtual void OnStart() {
-       
+
     }
 
+    public virtual bool PlantCrop(Transform crop, int cropStartPhaseID = 0) {
+        if(!CanPlantCrop()) return false;
 
-    public virtual void PlantCrop() {
-        
+        this.crop = Instantiate(crop, transform.position, Quaternion.identity);
+        this.crop.position = new Vector3(this.crop.position.x, 0.05f, this.crop.position.z);
+        this.crop.SetParent(transform);
+
+        var plantable = this.crop.GetComponent<Plantable>();
+        plantable.SetCurrentPhase(cropStartPhaseID);
+        plantable.CreateCrop();
+
+        return true;
     }
 
-    public virtual void SetCrop(CropSO crop) {
-        this.crop = crop;
-        canSpawnCrop = true;
+    public virtual void HarvestCrop() {
+        //If there is no crop, cancle it
+        if(CanPlantCrop()) return;
+
+        //If crop is not harvestable yet, cancle it
+        if(!crop.GetComponent<Plantable>().CanBeHarvest()) return;
+
+        Destroy(crop.gameObject);
+        crop = null;
+
+        onHarvest?.Invoke();
     }
 
-    public virtual CropSO GetCrop() {
+    public virtual Transform GetCrop() {
         return this.crop;
     }
 
-    //Temporary
-    public virtual void SetCrop(CropSO crop, int currentPhase) {
-        this.crop = crop;
-        this.currentPhase = currentPhase;
-        canSpawnCrop = true;
+    public bool CanPlantCrop() {
+        return crop == null;
     }
-
-    //Temporary
-    public virtual void SpawnCrop() {
-        if(!canSpawnCrop) return;
-
-        if(transform.childCount != 0) {
-            Destroy(transform.GetChild(0).gameObject);
-        }
-
-        var currentCropPrefab = Instantiate(crop.phasePrefabs[currentPhase], transform.position, Quaternion.identity);
-        currentCropPrefab.position = new Vector3(currentCropPrefab.position.x, 0.1f, currentCropPrefab.position.z);
-        currentCropPrefab.SetParent(transform);
-    }
-
 }
+

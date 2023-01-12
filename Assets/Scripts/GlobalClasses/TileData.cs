@@ -6,9 +6,9 @@ public class TileData {
 
     [SerializeField] private int x;
     [SerializeField] private int z;
-    [SerializeField] private CropSO crop;
+    [SerializeField] private Transform crop;
     [SerializeField] private LandSO land;
-    [SerializeField] private int currentPhase;
+    [SerializeField] private int startPhase;
 
     public TileData(int x, int z) {
         this.x = x;
@@ -23,11 +23,11 @@ public class TileData {
         return z;
     }
 
-    public void SetCrop(CropSO crop) {
+    public void SetCrop(Transform crop) {
         this.crop = crop;
     }
 
-    public CropSO GetCrop() {
+    public Transform GetCrop() {
         return crop;
     }
 
@@ -39,7 +39,11 @@ public class TileData {
         return land;
     }
 
-    public int GetCurrentPhase() {
-        return currentPhase;
+    public void SetStartPhase(int startPhase) {
+        this.startPhase = startPhase;
+    }
+
+    public int GetStartPhase() {
+        return startPhase;
     }
 }

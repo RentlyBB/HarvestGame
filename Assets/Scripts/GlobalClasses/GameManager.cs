@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager> {
 
-    public LevelSO level;
+    public GridXZ<GridObject> grid;
+
+
+
 
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class LevelDataSO : ScriptableObject {
 
     public int width;
@@ -39,13 +41,14 @@ public class LevelDataSO : ScriptableObject {
         }
     }
 
-    public void SetCropOnLand(int x, int z, CropSO crop) {
+    public void SetCropOnLand(int x, int z, Transform crop) {
         if(tileData_list.Count == 0) {
             InitEmptyLevel();
         }
 
         var tileData = tileData_list.Find(t => t.GetX() == x && t.GetZ() == z);
         tileData.SetCrop(crop);
+        tileData.SetStartPhase(0);
     }
 
     public TileData GetTileDataAt(int x, int z) {
@@ -59,5 +62,11 @@ public class LevelDataSO : ScriptableObject {
     public void ClearLevel() {
         tileData_list.Clear();
         InitEmptyLevel();
+    }
+
+    public void SetCropStartPhase(int x, int z, int phase) {
+        var tileData = tileData_list.Find(t => t.GetX() == x && t.GetZ() == z);
+
+        tileData.SetStartPhase(phase);
     }
 }

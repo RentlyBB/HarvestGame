@@ -6,7 +6,7 @@ using TMPro;
 
 public class CropButton : MonoBehaviour {
 
-    public CropSO cropToSelect;
+    public Transform cropToSelect;
 
     private TextMeshProUGUI text;
     private void Start() {

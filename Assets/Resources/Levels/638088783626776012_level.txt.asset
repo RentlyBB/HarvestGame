@@ -17,46 +17,46 @@ MonoBehaviour:
   tileData_list:
   - x: 0
     z: 0
-    crop: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
-    land: {fileID: 11400000, guid: 14d2420fefe6af640935f8f0b28c023d, type: 2}
-    currentPhase: 0
+    crop: {fileID: 0}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    startPhase: 0
   - x: 0
     z: 1
-    crop: {fileID: 0}
-    land: {fileID: 0}
-    currentPhase: 0
+    crop: {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697, type: 3}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    startPhase: 2
   - x: 0
     z: 2
-    crop: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
-    land: {fileID: 11400000, guid: 14d2420fefe6af640935f8f0b28c023d, type: 2}
-    currentPhase: 0
+    crop: {fileID: 0}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    startPhase: 0
   - x: 1
+    z: 0
+    crop: {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697, type: 3}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    startPhase: 1
+  - x: 1
+    z: 1
+    crop: {fileID: 0}
+    land: {fileID: 11400000, guid: 78b839a99eddbe1459984f4b23524ac1, type: 2}
+    startPhase: 0
+  - x: 1
+    z: 2
+    crop: {fileID: 0}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    startPhase: 0
+  - x: 2
     z: 0
     crop: {fileID: 0}
     land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
-    currentPhase: 0
-  - x: 1
+    startPhase: 0
+  - x: 2
     z: 1
-    crop: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
-    land: {fileID: 11400000, guid: 14d2420fefe6af640935f8f0b28c023d, type: 2}
-    currentPhase: 0
-  - x: 1
+    crop: {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697, type: 3}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    startPhase: 0
+  - x: 2
     z: 2
-    crop: {fileID: 0}
-    land: {fileID: 0}
-    currentPhase: 0
-  - x: 2
-    z: 0
-    crop: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
-    land: {fileID: 11400000, guid: 14d2420fefe6af640935f8f0b28c023d, type: 2}
-    currentPhase: 0
-  - x: 2
-    z: 1
     crop: {fileID: 0}
     land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
-    currentPhase: 0
-  - x: 2
-    z: 2
-    crop: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
-    land: {fileID: 11400000, guid: 14d2420fefe6af640935f8f0b28c023d, type: 2}
-    currentPhase: 0
+    startPhase: 0

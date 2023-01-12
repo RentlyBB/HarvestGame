@@ -531,7 +531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382932a7c980bc945b0cca447e59ad53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 11400000, guid: ae441128586735446bb1a93b6d1ef91f, type: 2}
 --- !u!4 &1297874151
 Transform:
   m_ObjectHideFlags: 0
@@ -591,12 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5235a2f0c591c70469375a2beb467aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 3
-  height: 3
-  cellSize: 1
-  tile_prefab: {fileID: 3991720372770425337, guid: fb19da913c2da2144a799aa5d3b5cf07,
-    type: 3}
-  cropToSet: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
+  levelToLoad: {fileID: 11400000, guid: 9cf7b58d467884a428c3ab152b5bd413, type: 2}
 --- !u!1 &1724081807
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +604,8 @@ GameObject:
   - component: {fileID: 1724081809}
   - component: {fileID: 1724081808}
   - component: {fileID: 1724081812}
+  - component: {fileID: 1724081813}
+  - component: {fileID: 1724081814}
   m_Layer: 0
   m_Name: Harvester
   m_TagString: Untagged
@@ -710,3 +706,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextMoves: []
   speed: 4
+--- !u!114 &1724081813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724081807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b25b94829bb92044a703a5920270850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1724081814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724081807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd15470d123f2894e85b8e3fcfd291f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeds: 3

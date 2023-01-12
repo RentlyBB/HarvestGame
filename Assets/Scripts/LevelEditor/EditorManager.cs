@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum PlaceModes { 
     LandMode,
@@ -17,7 +20,7 @@ public class EditorManager : Singleton<EditorManager>{
     [SerializeField] public LevelDataSO editingLevel;
 
     public LandSO selectedLand;
-    public CropSO selectedCrop;
+    public Transform selectedCrop;
 
     public GridXZ<GridObject> grid;
 
@@ -40,51 +43,68 @@ public class EditorManager : Singleton<EditorManager>{
         if(selectedLand != null) {
             GameObject obj;
             if(gridObject.CanCreateLand()) {
+
+                //Visualization
                 obj = Instantiate(selectedLand.landPrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
                 gridObject.ClearLand();
                 gridObject.SetLand(obj.transform);
+
+                //Update level data file
                 editingLevel.SetLandToLevel(gridObject.GetX(), gridObject.GetZ(), selectedLand);
-            
             }
         }
     }
 
     private void PlaceCropOnLand(GridObject gridObject) {
         if(selectedCrop != null) {
+            //Check if on this tile is any land
             if(!gridObject.CanCreateLand()) { 
                 var land = gridObject.GetLand();
 
-                var plantable = land.GetComponent<Farmland>();
+                var farmland = land.GetComponent<Farmland>();
 
-                if(plantable == null) return;
-                if(plantable.GetCrop() != null) return;
+                if(farmland == null) return;
 
-                plantable.SetCrop(selectedCrop, 0);
-                plantable.SpawnCrop();
-                editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
+                if(farmland.GetCrop() == null) {
+                    //Visualization
+                    farmland.PlantCrop(selectedCrop);
+                    
+                    //Update level data file
+                    editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
+                } else {
+                    //Visualization
+                    var plantable = farmland.GetCrop().GetComponent<Plantable>();
+                    plantable.GrowthUp();
 
+                    //Update level data file
+                    editingLevel.SetCropStartPhase(gridObject.GetX(), gridObject.GetZ(), plantable.GetCurrentPhase());
+                }
             }
         }
     }
 
     public void RemoveTileFromGrid(GridObject gridObject) {
         if(!gridObject.CanCreateLand()) {
+            //Visualization
             Destroy(gridObject.GetLand().gameObject);
             gridObject.ClearLand();
-            editingLevel.RemoveLand(gridObject.GetX(), gridObject.GetZ());
 
+            //Update level data file
+            editingLevel.RemoveLand(gridObject.GetX(), gridObject.GetZ());
+            editingLevel.SetCropStartPhase(gridObject.GetX(), gridObject.GetZ(), 0);
         }
     }
 
     public void CreateNewLevel() {
         editingLevel = ScriptableObject.CreateInstance<LevelDataSO>();
         string path = "Assets/Resources/Levels/" + CreateFileName() + ".asset";
-        AssetDatabase.CreateAsset(editingLevel, path);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        EditorUtility.SetDirty(editingLevel);
-        EditorUtility.FocusProjectWindow();
-
+        #if UNITY_EDITOR
+            AssetDatabase.CreateAsset(editingLevel, path);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            EditorUtility.SetDirty(editingLevel);
+            EditorUtility.FocusProjectWindow();
+        #endif
         editingLevel.width = 3;
         editingLevel.height = 3;
         editingLevel.InitEmptyLevel();
@@ -95,10 +115,12 @@ public class EditorManager : Singleton<EditorManager>{
     }
 
     public void SaveLevel() {
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        EditorUtility.SetDirty(editingLevel);
-        EditorUtility.FocusProjectWindow();
+        #if UNITY_EDITOR
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            EditorUtility.SetDirty(editingLevel);
+            EditorUtility.FocusProjectWindow();
+        #endif
         Debug.Log("Level Saved!");
     }
 
@@ -118,4 +140,8 @@ public class EditorManager : Singleton<EditorManager>{
         return myUniqueFileName;
     }
 
+
+    public void LoadLevel() { 
+        
+    }
 }
