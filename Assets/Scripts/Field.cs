@@ -16,7 +16,6 @@ public class Field : MonoBehaviour {
     public delegate void ClickedOnTile(GridXZ<GridObject> grid, Vector3 position);
     public static event ClickedOnTile clickedOnTile;
 
-
     private void OnEnable() {
 
     }

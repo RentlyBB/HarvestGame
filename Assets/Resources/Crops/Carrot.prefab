@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010502221597172983}
   - component: {fileID: 7010502221597172982}
+  - component: {fileID: -1554752730267625274}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -50,6 +51,34 @@ MonoBehaviour:
   currentPhase: 0
   state: 0
   tickToGrowth: 2
+--- !u!114 &-1554752730267625274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010502221597172977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8beeda0b0274575448b7a9635c07086f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: e35d96b065d95c740bf57961c3153fce, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7010502221597172982}
+        m_TargetAssemblyTypeName: Plantable, Assembly-CSharp
+        m_MethodName: GrowthUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1062109483
 PrefabInstance:
   m_ObjectHideFlags: 0

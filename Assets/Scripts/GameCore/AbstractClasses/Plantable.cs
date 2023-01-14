@@ -22,7 +22,7 @@ public abstract class Plantable : MonoBehaviour {
     }
 
     protected virtual void BaseOnEnable() {
-        GridMovement.growthEvent += GrowthUp;
+
     }
 
     private void OnDisable() {
@@ -31,7 +31,7 @@ public abstract class Plantable : MonoBehaviour {
 
 
     protected virtual void BaseOnDisable() {
-        GridMovement.growthEvent -= GrowthUp;
+       
     }
 
 

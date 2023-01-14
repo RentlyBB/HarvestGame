@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 1724081813}
   - component: {fileID: 1724081814}
   m_Layer: 0
-  m_Name: Harvester
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,6 +872,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aecb8a4d20ab1442b95c037528306a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GrowthEvent: {fileID: 11400000, guid: e35d96b065d95c740bf57961c3153fce, type: 2}
+  HarvestEvent: {fileID: 11400000, guid: b79d992fad90e6848b8f7a91978322ee, type: 2}
+  PlantEvent: {fileID: 11400000, guid: 4d6603772bd55fb4bb21bd8f37da66d6, type: 2}
   nextMoves: []
   speed: 4
 --- !u!114 &1724081813
@@ -886,6 +889,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b25b94829bb92044a703a5920270850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: b79d992fad90e6848b8f7a91978322ee, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1724081813}
+        m_TargetAssemblyTypeName: Harvester, Assembly-CSharp
+        m_MethodName: HarvestFarmland
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1724081814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,4 +917,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd15470d123f2894e85b8e3fcfd291f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeds: 0
+  _channel: {fileID: 11400000, guid: 4d6603772bd55fb4bb21bd8f37da66d6, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1724081814}
+        m_TargetAssemblyTypeName: Planter, Assembly-CSharp
+        m_MethodName: PlantCropOnFarmland
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  seeds: 4

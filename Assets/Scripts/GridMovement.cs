@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class GridMovement : MonoBehaviour {
 
-    public delegate void GrowthEvent();
-    public static event GrowthEvent growthEvent;
+    //public delegate void GrowthEvent();
+    //public static event GrowthEvent growthEvent;
 
-    public delegate void HarvestEvent();
-    public static event HarvestEvent harvestEvent;
+    [SerializeField] private VoidEventChannelSO GrowthEvent;
+    [SerializeField] private VoidEventChannelSO HarvestEvent;
+    [SerializeField] private VoidEventChannelSO PlantEvent;
 
-    public delegate void PlantEvent();
-    public static event PlantEvent plantEvent;
+    //public delegate void HarvestEvent();
+    //public static event HarvestEvent harvestEvent;
+
+    //public delegate void PlantEvent();
+    //public static event PlantEvent plantEvent;
+
+    
 
     [SerializeField] private List<Vector3> nextMoves;
     [SerializeField] private float speed;
@@ -36,7 +42,7 @@ public class GridMovement : MonoBehaviour {
         ProcessMovement();
     }
 
-    private void CalculateNextMove(GridXZ<GridObject> grid, Vector3 mouseWorldPositon) {
+    public void CalculateNextMove(GridXZ<GridObject> grid, Vector3 mouseWorldPositon) {
 
         // Calcuate world position of the cell by mouse position
         Vector3 worldPosition = grid.GetWorldPositionCellCenter(mouseWorldPositon);
@@ -76,11 +82,11 @@ public class GridMovement : MonoBehaviour {
             if(Vector3.Distance(transform.position, target) < 0.001f) {
                 lastPosition = nextMoves[0];
 
-                plantEvent?.Invoke();
+                PlantEvent.RaiseEvent();
 
-                harvestEvent?.Invoke();
+                HarvestEvent.RaiseEvent();
 
-                growthEvent?.Invoke();
+                GrowthEvent.RaiseEvent();
 
                 nextMoves.RemoveAt(0);
             }
