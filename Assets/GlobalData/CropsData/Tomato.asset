@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4afd7f70f893c9644bc6272bea390e27, type: 3}
-  m_Name: Food
+  m_Name: Tomato
   m_EditorClassIdentifier: 
   phasePrefabs:
   - {fileID: 927689263913908439, guid: 435ad182f73357f4181d26861b572621, type: 3}
-  - {fileID: 4679318698891148270, guid: 16178093e5356b448851c8c5f9f804ec, type: 3}
   - {fileID: 203318290103640340, guid: 86a1c64365091fa4c8e74ae6c42898b2, type: 3}
   - {fileID: 212370033583442170, guid: 94a0db1abdff1384bb4df38454e4421c, type: 3}
   - {fileID: 6062324891783145108, guid: 35a9e6ba062375e439b50df9d98ca81b, type: 3}
-  harvestablePrefabID: 3
-  overgrownPrefabID: 4
+  harvestablePrefabID: 2
+  overgrownPrefabID: 3

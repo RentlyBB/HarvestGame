@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public abstract class Farmland : MonoBehaviour {
 
     [Header("Crop planted on the land. Can be null.")]
