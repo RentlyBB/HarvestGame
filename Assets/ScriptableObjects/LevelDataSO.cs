@@ -9,6 +9,7 @@ public class LevelDataSO : ScriptableObject {
     public int width;
     public int height;
 
+    [SerializeField] public List<Transform> cropToPlant_list;
     [SerializeField] public List<TileData> tileData_list;
 
     public void InitEmptyLevel() {

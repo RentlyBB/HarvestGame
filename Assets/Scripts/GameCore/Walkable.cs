@@ -10,4 +10,8 @@ public class Walkable : MonoBehaviour {
         return isWalkable;
     }
 
+    public void SetWalkable(bool isWalkable) {
+        this.isWalkable = isWalkable;
+    }
+
 }

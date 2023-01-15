@@ -8,10 +8,14 @@ public class CropButton : MonoBehaviour {
 
     public Transform cropToSelect;
 
-    private TextMeshProUGUI text;
+    //private TextMeshProUGUI text;
+
+    private Image img;
+
     private void Start() {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        text.text = cropToSelect.name;
+
+        img = GetComponent<Image>();
+        img.sprite = cropToSelect.GetComponent<Plantable>().cropData.sprite;
     }
 
     public void Select() {

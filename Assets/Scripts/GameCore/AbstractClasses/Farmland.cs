@@ -7,8 +7,6 @@ public abstract class Farmland : MonoBehaviour {
     [Header("Crop planted on the land. Can be null.")]
     [SerializeField] protected Transform crop;
 
-    public Transform plantCropTest;
-
     public delegate void OnHarvest();
     public static event OnHarvest onHarvest;
 
@@ -18,6 +16,12 @@ public abstract class Farmland : MonoBehaviour {
 
     protected virtual void OnStart() {
 
+    }
+
+    private void OnEnable() {
+    }
+
+    private void OnDisable() {
     }
 
     public virtual bool PlantCrop(Transform crop, int cropStartPhaseID = 0) {
@@ -30,6 +34,10 @@ public abstract class Farmland : MonoBehaviour {
         var plantable = this.crop.GetComponent<Plantable>();
         plantable.SetCurrentPhase(cropStartPhaseID);
         plantable.CreateCrop();
+
+        var walkable = GetComponent<Walkable>();
+
+        if(walkable != null) walkable.SetWalkable(false);
 
         return true;
     }
@@ -45,6 +53,12 @@ public abstract class Farmland : MonoBehaviour {
         crop = null;
 
         onHarvest?.Invoke();
+    }
+
+    private void UpdateWalkableStatus() {
+        var walkable = GetComponent<Walkable>();
+
+        if(walkable != null) walkable.SetWalkable(true);
     }
 
     public virtual Transform GetCrop() {

@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 3
+  cropToPlant_list:
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
   tileData_list:
   - x: 0
     z: 0
@@ -38,7 +42,7 @@ MonoBehaviour:
   - x: 1
     z: 1
     crop: {fileID: 0}
-    land: {fileID: 11400000, guid: 78b839a99eddbe1459984f4b23524ac1, type: 2}
+    land: {fileID: 11400000, guid: 14d2420fefe6af640935f8f0b28c023d, type: 2}
     startPhase: 0
   - x: 1
     z: 2

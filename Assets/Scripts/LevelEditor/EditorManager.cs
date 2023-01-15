@@ -95,6 +95,18 @@ public class EditorManager : Singleton<EditorManager>{
         }
     }
 
+    public void AddSeed() {
+        if(selectedCrop == null) return;
+        editingLevel.cropToPlant_list.Add(selectedCrop);
+        
+    }
+
+    public void RemoveSeed() {
+        if(editingLevel.cropToPlant_list.Count > 0) {
+            editingLevel.cropToPlant_list.Remove(editingLevel.cropToPlant_list[^1]);
+        }
+    }
+
     public void CreateNewLevel() {
         editingLevel = ScriptableObject.CreateInstance<LevelDataSO>();
         string path = "Assets/Resources/Levels/" + CreateFileName() + ".asset";

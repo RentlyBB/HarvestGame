@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class GridMovement : MonoBehaviour {
 
-    //public delegate void GrowthEvent();
-    //public static event GrowthEvent growthEvent;
+    [Header("Broadcasting Events")]
+    [SerializeField] private VoidEventChannelSO OnMovementEndEvent;
 
-    [SerializeField] private VoidEventChannelSO GrowthEvent;
-    [SerializeField] private VoidEventChannelSO HarvestEvent;
-    [SerializeField] private VoidEventChannelSO PlantEvent;
-
-    //public delegate void HarvestEvent();
-    //public static event HarvestEvent harvestEvent;
-
-    //public delegate void PlantEvent();
-    //public static event PlantEvent plantEvent;
-
-    
+    [Header("Events Listeners")]
+    [SerializeField] private GridVector3EventChannelSO OnClickEvent;
 
     [SerializeField] private List<Vector3> nextMoves;
     [SerializeField] private float speed;
@@ -30,11 +21,11 @@ public class GridMovement : MonoBehaviour {
     }
 
     private void OnEnable() {
-        Field.clickedOnTile += CalculateNextMove;
+        OnClickEvent.OnEventRaised += CalculateNextMove;
     }
 
     private void OnDisable() {
-        Field.clickedOnTile -= CalculateNextMove;
+        OnClickEvent.OnEventRaised -= CalculateNextMove;
     }
 
     private void Update() {
@@ -54,8 +45,6 @@ public class GridMovement : MonoBehaviour {
             return;
         }
 
-        // Get XZ coords of the next cell
-        grid.GetXZ(mouseWorldPositon, out int nextX, out int nextZ);
 
         int lastX, lastZ;
 
@@ -66,7 +55,7 @@ public class GridMovement : MonoBehaviour {
         }
 
         //check if next movement is valid
-        if(ValidateNextMove(lastX, lastZ, nextX, nextZ)) {
+        if(ValidateNextMove(lastX, lastZ, gridObject.GetX(), gridObject.GetZ())) {
             nextMoves.Add(worldPosition);
             canMove = true;
         }
@@ -81,13 +70,7 @@ public class GridMovement : MonoBehaviour {
 
             if(Vector3.Distance(transform.position, target) < 0.001f) {
                 lastPosition = nextMoves[0];
-
-                PlantEvent.RaiseEvent();
-
-                HarvestEvent.RaiseEvent();
-
-                GrowthEvent.RaiseEvent();
-
+                OnMovementEndEvent.RaiseEvent();
                 nextMoves.RemoveAt(0);
             }
         } 

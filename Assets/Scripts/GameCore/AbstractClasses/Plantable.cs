@@ -5,13 +5,16 @@ public abstract class Plantable : MonoBehaviour {
 
     public enum CropState { Not_Harvestable, Harvestable, Rotten };
 
-    [SerializeField] protected CropSO cropData;
+    [SerializeField] public CropSO cropData;
 
     [SerializeField] protected int currentPhase = 0;
 
     [SerializeField] protected CropState state;
 
     [SerializeField] protected int tickToGrowth = 1;
+
+    [Header("Events Listeners")]
+    [SerializeField] private VoidEventChannelSO OnGrowthEvent;
 
     private Transform currentCropPrefab;
 
@@ -22,7 +25,7 @@ public abstract class Plantable : MonoBehaviour {
     }
 
     protected virtual void BaseOnEnable() {
-
+        OnGrowthEvent.OnEventRaised += GrowthUp;
     }
 
     private void OnDisable() {
@@ -31,7 +34,7 @@ public abstract class Plantable : MonoBehaviour {
 
 
     protected virtual void BaseOnDisable() {
-       
+        OnGrowthEvent.OnEventRaised -= GrowthUp;
     }
 
 
@@ -50,6 +53,7 @@ public abstract class Plantable : MonoBehaviour {
     }
 
     public virtual void GrowthUp() {
+        
         if(CanGrowthUp()) {
             currentPhase++;
             Destroy(currentCropPrefab.gameObject);
@@ -83,8 +87,15 @@ public abstract class Plantable : MonoBehaviour {
     private void UpdateState() {
         if(currentPhase >= cropData.GetOvergrownPrefabID()) {
             state = CropState.Rotten;
+            var walkable = GetComponentInParent<Walkable>();
+
+            if(walkable != null) walkable.SetWalkable(true);
         } else if(currentPhase == cropData.GetHarvestablePrefabID()) {
             state = CropState.Harvestable;
+            var walkable = GetComponentInParent<Walkable>();
+
+            if(walkable != null) walkable.SetWalkable(true);
+
         } else {
             state = CropState.Not_Harvestable;
         }
