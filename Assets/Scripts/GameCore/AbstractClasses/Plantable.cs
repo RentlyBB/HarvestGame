@@ -90,6 +90,7 @@ public abstract class Plantable : MonoBehaviour {
             var walkable = GetComponentInParent<Walkable>();
 
             if(walkable != null) walkable.SetWalkable(true);
+
         } else if(currentPhase == cropData.GetHarvestablePrefabID()) {
             state = CropState.Harvestable;
             var walkable = GetComponentInParent<Walkable>();

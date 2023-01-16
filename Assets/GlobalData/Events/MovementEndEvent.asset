@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6a7f8cef2c54ae4a88f8eee8983847e, type: 3}
-  m_Name: OnGridClickEvent
+  m_Script: {fileID: 11500000, guid: d8855aa92a0627542883cfe67274565c, type: 3}
+  m_Name: MovementEndEvent
   m_EditorClassIdentifier: 

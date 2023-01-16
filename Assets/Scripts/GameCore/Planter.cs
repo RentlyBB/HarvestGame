@@ -1,33 +1,39 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Planter : MonoBehaviour {
 
-    [Header("Number of seed to be plant in level")]
-    [SerializeField] private int seeds = 2;
-
     [Header("Events Listeners")]
-    [SerializeField] private VoidEventChannelSO OnPlantEvent;
+    [SerializeField] private GridObjectEventChannelSO OnPlantEvent;
+    [SerializeField] private LevelDataEventChannelSO OnLevelLoadEvent;
+
+    private List<Transform> seeds_list;
 
     private void OnEnable() {
         OnPlantEvent.OnEventRaised += PlantCropOnFarmland;
+        OnLevelLoadEvent.OnEventRaised += InitCropSeeds;
     }
 
     private void OnDisable() {
         OnPlantEvent.OnEventRaised -= PlantCropOnFarmland;
+        OnLevelLoadEvent.OnEventRaised -= InitCropSeeds;
     }
 
-    public void PlantCropOnFarmland() {
+    public void PlantCropOnFarmland(GridObject gridObject) {
 
-        if(seeds > 0) {
-            var gridObject = GameManager.Instance.grid.GetGridObject(transform.position);
+        if(seeds_list.Count > 0) {
             var farmland = gridObject.GetLand().GetComponent<Farmland>();
 
             if(farmland == null) return;
 
-            if(GameManager.Instance.levelData.cropToPlant_list.Count != 0 && farmland.PlantCrop(GameManager.Instance.levelData.cropToPlant_list[0])) {
-                seeds--;
+            if(farmland.PlantCrop(seeds_list[0])) {
+                seeds_list.RemoveAt(0);
             }
         }
+    }
+
+    public void InitCropSeeds(LevelDataSO levelData) {
+        seeds_list = new List<Transform>(levelData.seeds_list);
     }
 }

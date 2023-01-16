@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 3
-  cropToPlant_list:
+  seeds_list:
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
   - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
   - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
   - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}

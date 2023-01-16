@@ -7,8 +7,6 @@ public class GridMovement : MonoBehaviour {
     [Header("Broadcasting Events")]
     [SerializeField] private VoidEventChannelSO OnMovementEndEvent;
 
-    [Header("Events Listeners")]
-    [SerializeField] private GridVector3EventChannelSO OnClickEvent;
 
     [SerializeField] private List<Vector3> nextMoves;
     [SerializeField] private float speed;
@@ -21,11 +19,9 @@ public class GridMovement : MonoBehaviour {
     }
 
     private void OnEnable() {
-        OnClickEvent.OnEventRaised += CalculateNextMove;
     }
 
     private void OnDisable() {
-        OnClickEvent.OnEventRaised -= CalculateNextMove;
     }
 
     private void Update() {

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FarmlandGrid : MonoBehaviour {
 
-    [SerializeField] private LevelDataSO levelToLoad = default;
-
     [Header("Grid Movement Properties")]
     [SerializeField] private Transform player = default;
     [SerializeField] private float movementSpeed = default;
@@ -14,18 +12,27 @@ public class FarmlandGrid : MonoBehaviour {
     [SerializeField] private List<Vector3> nextMoves = new List<Vector3>();
 
     [Header("Broadcasting Events")]
-    [SerializeField] private VoidEventChannelSO OnMovementEndEvent = default;
+    [SerializeField] private GridObjectEventChannelSO OnMovementEndEvent = default;
+
+    [Header("Event Listeners")]
+    [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
 
     private int width = default;
     private int height = default;
+
     private float cellSize = 1f;
    
     private GridXZ<GridObject> grid = default;
 
+    private void OnEnable() {
+        LoadLevelEvent.OnEventRaised += InitGrid;    
+    }
+    private void OnDisable() {
+        LoadLevelEvent.OnEventRaised -= InitGrid;
+    }
+
     private void Start() {
         lastPosition = player.position;
-
-        InitGrid();
     }
 
     private void Update() {
@@ -41,16 +48,34 @@ public class FarmlandGrid : MonoBehaviour {
         }
     }
 
-    private void InitGrid() {
+    private void InitGrid(LevelDataSO levelData) {
 
-        width = levelToLoad.width;
-        height = levelToLoad.height;
+        width = levelData.width;
+        height = levelData.height;
 
         grid = new GridXZ<GridObject>(width, height, cellSize, transform.position, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
-        GameManager.Instance.grid = grid;
-        GameManager.Instance.levelData = levelToLoad;
+        
+        // Create grid with object from levelData
+        for(int x = 0; x < width; x++) {
+            for(int z = 0; z < height; z++) {
+                var gridObject = grid.GetGridObject(x, z);
 
-        LoadLevel();
+                if(gridObject.CanCreateLand()) {
+
+                    var tileData = levelData.GetTileDataAt(x, z);
+
+                    if(tileData.GetLand() != null) {
+                        var land = Instantiate(tileData.GetLand().landPrefab, grid.GetWorldPositionCellCenter(x, z), Quaternion.identity);
+                        if(tileData.GetCrop() != null) {
+                            var farmland = land.GetComponent<Farmland>();
+                            farmland.PlantCrop(tileData.GetCrop(), tileData.GetStartPhase());
+                        }
+                        gridObject.ClearLand();
+                        gridObject.SetLand(land);
+                    }
+                }
+            }
+        }
     }
 
     public void CalculateNextMove(Vector3 mouseWorldPositon) {
@@ -80,7 +105,7 @@ public class FarmlandGrid : MonoBehaviour {
         }
     }
 
-
+    //Should be this in script for player??
     private void MovePlayer() {
         var step = movementSpeed * Time.deltaTime;
         var targetPosition = new Vector3(nextMoves[0].x, player.position.y, nextMoves[0].z);
@@ -88,7 +113,9 @@ public class FarmlandGrid : MonoBehaviour {
 
         if(Vector3.Distance(player.position, targetPosition) < 0.001f) {
             lastPosition = nextMoves[0];
-            OnMovementEndEvent.RaiseEvent();
+
+            OnMovementEndEvent.RaiseEvent(grid.GetGridObject(lastPosition));
+            
             nextMoves.RemoveAt(0);
         }
     }
@@ -123,50 +150,6 @@ public class FarmlandGrid : MonoBehaviour {
 
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void LoadLevel() {
-        if(levelToLoad == null) {
-            Debug.LogError("There is no level to load!");
-            return;
-        }
-
-        for(int x = 0; x < width; x++) {
-            for(int z = 0; z < height; z++) {
-                var gridObject = grid.GetGridObject(x, z);
-
-                if(gridObject.CanCreateLand()) {
-
-                    var tileData = levelToLoad.GetTileDataAt(x, z);
-
-                    if(tileData.GetLand() != null) {
-                        var land = Instantiate(tileData.GetLand().landPrefab, grid.GetWorldPositionCellCenter(x, z), Quaternion.identity);
-                        if(tileData.GetCrop() != null) {
-                            var farmland = land.GetComponent<Farmland>();
-                            farmland.PlantCrop(tileData.GetCrop(), tileData.GetStartPhase());
-                        }
-                        gridObject.ClearLand();
-                        gridObject.SetLand(land);
-                    }
-                }
-            }
-        }
-    }
-
 
     //Input Manager?? SO??
     private Vector3 GetMousePosition3D() {

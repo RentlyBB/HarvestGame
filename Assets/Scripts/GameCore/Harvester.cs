@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Harvester : MonoBehaviour {
 
     [Header("Events Listeners")]
-    [SerializeField] private VoidEventChannelSO OnHarvestEvent;
-
+    [SerializeField] private GridObjectEventChannelSO OnHarvestEvent;
 
     private void OnEnable() {
         OnHarvestEvent.OnEventRaised += HarvestFarmland;
@@ -16,12 +13,11 @@ public class Harvester : MonoBehaviour {
         OnHarvestEvent.OnEventRaised -= HarvestFarmland;
     }
 
-    public void HarvestFarmland() {
-        var gridObject = GameManager.Instance.grid.GetGridObject(transform.position);
+    public void HarvestFarmland(GridObject gridObject) {
         var farmland = gridObject.GetLand().GetComponent<Farmland>();
 
-        if(farmland != null) farmland.HarvestCrop();
+        if(farmland != null) {
+            farmland.HarvestCrop();
+        } 
     }
-
-
 }

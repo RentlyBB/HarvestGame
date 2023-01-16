@@ -22,8 +22,8 @@ public class SeedQueue : MonoBehaviour {
     }
 
     private void Start() {
-        if(levelData.cropToPlant_list.Count > 0) {
-            foreach(Transform crop in levelData.cropToPlant_list) {
+        if(levelData.seeds_list.Count > 0) {
+            foreach(Transform crop in levelData.seeds_list) {
                 var tempIcon = Instantiate(iconPrefab);
                 tempIcon.SetParent(transform);
                 tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
@@ -37,7 +37,7 @@ public class SeedQueue : MonoBehaviour {
             Destroy(child.gameObject);
         }
 
-        foreach(Transform crop in levelData.cropToPlant_list) {
+        foreach(Transform crop in levelData.seeds_list) {
             var tempIcon = Instantiate(iconPrefab);
             tempIcon.SetParent(transform);
             tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
