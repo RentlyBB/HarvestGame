@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8855aa92a0627542883cfe67274565c, type: 3}
-  m_Name: PlantEvent
+  m_Script: {fileID: 11500000, guid: 2d66f43b7cd832145879518018d83f4d, type: 3}
+  m_Name: OnBadHarvestEvent
   m_EditorClassIdentifier: 

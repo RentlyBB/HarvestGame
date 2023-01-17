@@ -5,25 +5,28 @@ using UnityEngine.UI;
 
 public class SeedQueue : MonoBehaviour {
 
-
-    [SerializeField] private LevelDataSO levelData = default;
+    private List<Transform> cropSeeds_list = new List<Transform>();
 
     [SerializeField] private Transform iconPrefab;
 
-    [SerializeField] private VoidEventChannelSO seedQueueUpdateListener;
+    [Header("Listen to")]
+    [SerializeField] private VoidEventChannelSO SeedQueueUpdateEvent;
+    [SerializeField] private LevelDataEventChannelSO OnLevelLoadEvent;
 
 
     private void OnEnable() {
-        seedQueueUpdateListener.OnEventRaised += UpdateUI;
+        OnLevelLoadEvent.OnEventRaised += GetCropSeeds;
+        SeedQueueUpdateEvent.OnEventRaised += UpdateUI;
     }
 
     private void OnDisable() {
-        
+        OnLevelLoadEvent.OnEventRaised -= GetCropSeeds;
+        SeedQueueUpdateEvent.OnEventRaised -= UpdateUI;
     }
 
     private void Start() {
-        if(levelData.seeds_list.Count > 0) {
-            foreach(Transform crop in levelData.seeds_list) {
+        if(cropSeeds_list.Count > 0) {
+            foreach(Transform crop in cropSeeds_list) {
                 var tempIcon = Instantiate(iconPrefab);
                 tempIcon.SetParent(transform);
                 tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
@@ -37,12 +40,16 @@ public class SeedQueue : MonoBehaviour {
             Destroy(child.gameObject);
         }
 
-        foreach(Transform crop in levelData.seeds_list) {
+        foreach(Transform crop in cropSeeds_list) {
             var tempIcon = Instantiate(iconPrefab);
             tempIcon.SetParent(transform);
             tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
         }
 
+    }
+
+    public void GetCropSeeds(LevelDataSO levelData) {
+        cropSeeds_list = levelData.cropSeeds_list;
     }
 
 

@@ -111,9 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faa7da0008752a4c89e462f4aeb8ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crop: {fileID: 0}
-  plantCropTest: {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697,
-    type: 3}
+  OnBadHarvest: {fileID: 11400000, guid: c85da7ae104279b489ead66d28b239c4, type: 2}
 --- !u!114 &-1038618259898317734
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,10 +12,14 @@ public class FarmlandGrid : MonoBehaviour {
     [SerializeField] private List<Vector3> nextMoves = new List<Vector3>();
 
     [Header("Broadcasting Events")]
-    [SerializeField] private GridObjectEventChannelSO OnMovementEndEvent = default;
+    [SerializeField] private VoidEventChannelSO OnMovementEndEvent = default;
 
-    [Header("Event Listeners")]
+    [Header("Listen to")]
     [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
+    [SerializeField] private TransformEventChannelSO OnBadHarvest = default;
+
+    // Just temp for test
+    public Transform sidewalk;
 
     private int width = default;
     private int height = default;
@@ -24,16 +28,27 @@ public class FarmlandGrid : MonoBehaviour {
    
     private GridXZ<GridObject> grid = default;
 
+    private PlayerBehaviour playerBehaviour = default;
+
     private void OnEnable() {
-        LoadLevelEvent.OnEventRaised += InitGrid;    
+        LoadLevelEvent.OnEventRaised += InitGrid;
+        OnBadHarvest.OnEventRaised += SwitchLand;
     }
     private void OnDisable() {
         LoadLevelEvent.OnEventRaised -= InitGrid;
+        OnBadHarvest.OnEventRaised -= SwitchLand;
+    }
+
+    private void Awake() {
+        if(player != null) {
+            playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        }
     }
 
     private void Start() {
         lastPosition = player.position;
     }
+
 
     private void Update() {
 
@@ -114,8 +129,10 @@ public class FarmlandGrid : MonoBehaviour {
         if(Vector3.Distance(player.position, targetPosition) < 0.001f) {
             lastPosition = nextMoves[0];
 
-            OnMovementEndEvent.RaiseEvent(grid.GetGridObject(lastPosition));
+            playerBehaviour.InteractWithTile(grid.GetGridObject(lastPosition));
             
+            OnMovementEndEvent.RaiseEvent();
+
             nextMoves.RemoveAt(0);
         }
     }
@@ -159,5 +176,15 @@ public class FarmlandGrid : MonoBehaviour {
         } else {
             return new Vector3(1000,1000,1000);
         }
+    }
+
+    private void SwitchLand(Transform transform) {
+        var gridObject = grid.GetGridObject(transform.position);
+        
+        Destroy(transform.gameObject);
+
+        var land = Instantiate(sidewalk, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
+        gridObject.ClearLand();
+        gridObject.SetLand(land);
     }
 }

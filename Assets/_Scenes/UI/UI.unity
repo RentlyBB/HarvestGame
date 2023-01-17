@@ -342,11 +342,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7edfda24e67cd34a927193fa2b4a4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 11400000, guid: 13b6be74dd1cdd04ca66ddd60c3b5d90, type: 2}
   iconPrefab: {fileID: 8082643291404052792, guid: 4e926a23fc0f5fe4b8cc24c8de0bfeab,
     type: 3}
-  seedQueueUpdateListener: {fileID: 11400000, guid: 4d6603772bd55fb4bb21bd8f37da66d6,
+  SeedQueueUpdateEvent: {fileID: 11400000, guid: 276b459ed0159314fafe56dc2a5759ae,
     type: 2}
+  OnLevelLoadEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}
 --- !u!114 &484119638
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 3
-  seeds_list:
-  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
-  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
-  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
-  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
   tileData_list:
   - x: 0
     z: 0
@@ -65,3 +60,9 @@ MonoBehaviour:
     crop: {fileID: 0}
     land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
     startPhase: 0
+  seeds_list:
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  cropSeeds_list: []

@@ -531,13 +531,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382932a7c980bc945b0cca447e59ad53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 11400000, guid: 13b6be74dd1cdd04ca66ddd60c3b5d90, type: 2}
+  levelData: {fileID: 11400000, guid: 9cf7b58d467884a428c3ab152b5bd413, type: 2}
   GameStartEvent: {fileID: 11400000, guid: 5cace04b04aeb324fb00aca70bb296a2, type: 2}
-  PlantEvent: {fileID: 11400000, guid: 4d6603772bd55fb4bb21bd8f37da66d6, type: 2}
-  HarvestEvent: {fileID: 11400000, guid: b79d992fad90e6848b8f7a91978322ee, type: 2}
   GrowthEvent: {fileID: 11400000, guid: e35d96b065d95c740bf57961c3153fce, type: 2}
   LoadLevelEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}
-  OnMovementEndEvent: {fileID: 11400000, guid: ab99a1fceabb15747bf4045c96c2fe4b, type: 2}
+  OnMovementEndEvent: {fileID: 11400000, guid: ef64071a7c3e01e4fb59e6d613ff561e, type: 2}
 --- !u!4 &1297874151
 Transform:
   m_ObjectHideFlags: 0
@@ -600,8 +598,11 @@ MonoBehaviour:
   player: {fileID: 1724081811}
   movementSpeed: 4
   nextMoves: []
-  OnMovementEndEvent: {fileID: 11400000, guid: ab99a1fceabb15747bf4045c96c2fe4b, type: 2}
+  OnMovementEndEvent: {fileID: 11400000, guid: ef64071a7c3e01e4fb59e6d613ff561e, type: 2}
   LoadLevelEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}
+  OnBadHarvest: {fileID: 11400000, guid: c85da7ae104279b489ead66d28b239c4, type: 2}
+  sidewalk: {fileID: 3991720372770425337, guid: a19a245df48b03b40af9dd2f2dcfd804,
+    type: 3}
 --- !u!1 &1724081807
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +615,8 @@ GameObject:
   - component: {fileID: 1724081810}
   - component: {fileID: 1724081809}
   - component: {fileID: 1724081808}
-  - component: {fileID: 1724081813}
+  - component: {fileID: 1724081816}
+  - component: {fileID: 1724081815}
   - component: {fileID: 1724081814}
   m_Layer: 0
   m_Name: Player
@@ -702,19 +704,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1724081813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724081807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b25b94829bb92044a703a5920270850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHarvestEvent: {fileID: 11400000, guid: b79d992fad90e6848b8f7a91978322ee, type: 2}
 --- !u!114 &1724081814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,5 +716,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd15470d123f2894e85b8e3fcfd291f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlantEvent: {fileID: 11400000, guid: 4d6603772bd55fb4bb21bd8f37da66d6, type: 2}
+  OnPlantEvent: {fileID: 11400000, guid: 276b459ed0159314fafe56dc2a5759ae, type: 2}
   OnLevelLoadEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}
+--- !u!114 &1724081815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724081807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b25b94829bb92044a703a5920270850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1724081816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724081807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462b228baa373eb429c8a17ea18ba5d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planter: {fileID: 0}
+  harvester: {fileID: 0}

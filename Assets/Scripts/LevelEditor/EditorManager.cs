@@ -97,13 +97,12 @@ public class EditorManager : Singleton<EditorManager>{
 
     public void AddSeed() {
         if(selectedCrop == null) return;
-        editingLevel.seeds_list.Add(selectedCrop);
-        
+        editingLevel.AddCropSeedToList(selectedCrop);
     }
 
     public void RemoveSeed() {
-        if(editingLevel.seeds_list.Count > 0) {
-            editingLevel.seeds_list.Remove(editingLevel.seeds_list[^1]);
+        if(editingLevel.cropSeeds_list.Count > 0) {
+            editingLevel.RemoveCropSeedFromList();
         }
     }
 

@@ -9,8 +9,15 @@ public class LevelDataSO : ScriptableObject {
     public int width;
     public int height;
 
-    [SerializeField] public List<Transform> seeds_list;
-    [SerializeField] public List<TileData> tileData_list;
+    [SerializeField] public List<TileData> tileData_list = new List<TileData>();
+    
+    //Persistant data of crop seeds 
+    [Header("Persistant data - this should not be change in gameplay")]
+    [SerializeField] private List<Transform> seeds_list = new List<Transform>();
+
+    //Data of crop seeds used in game 
+    [HideInInspector] public List<Transform> cropSeeds_list = new List<Transform>();
+
 
     public void InitEmptyLevel() {
 
@@ -70,4 +77,17 @@ public class LevelDataSO : ScriptableObject {
 
         tileData.SetStartPhase(phase);
     }
+
+    public void AddCropSeedToList(Transform crop) {
+        seeds_list.Add(crop);
+    }
+
+    public void RemoveCropSeedFromList() {
+        seeds_list.Remove(seeds_list[^1]);
+    }
+
+    public void Reset() {
+        cropSeeds_list = new List<Transform>(seeds_list);
+    }
 }
+

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Events/GridObject Event Channel")]
 public class GridObjectEventChannelSO : ScriptableObject {

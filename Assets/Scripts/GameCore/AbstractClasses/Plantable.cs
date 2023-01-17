@@ -103,10 +103,16 @@ public abstract class Plantable : MonoBehaviour {
     }
 
     public bool CanBeHarvest() {
-        if(state == CropState.Harvestable || state == CropState.Rotten) {
-            return true;
+
+        switch(state) {
+            case CropState.Harvestable:
+                return true;
+            case CropState.Rotten:
+                return true;
+            default:
+                return false;
         }
-        return false;
+
     }
 
 }

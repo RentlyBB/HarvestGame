@@ -11,6 +11,7 @@ public class CropSO : ScriptableObject {
 
     [SerializeField] private int overgrownPrefabID;
 
+    [Header("UI")]
     [SerializeField] public Sprite sprite;
 
 
