@@ -22,7 +22,7 @@ MonoBehaviour:
     startPhase: 0
   - x: 0
     z: 1
-    crop: {fileID: 0}
+    crop: {fileID: 976829842673617474, guid: b5c7a8a99d9a50842b10e81476236459, type: 3}
     land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
     startPhase: 0
   - x: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     startPhase: 0
   - x: 2
     z: 1
-    crop: {fileID: 0}
+    crop: {fileID: 976829842673617474, guid: b5c7a8a99d9a50842b10e81476236459, type: 3}
     land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
     startPhase: 0
   - x: 2
@@ -64,4 +64,6 @@ MonoBehaviour:
   - {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697, type: 3}
   - {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697, type: 3}
   - {fileID: 7199737764584593886, guid: cb90468c3078973479a8619ade8a431c, type: 3}
+  - {fileID: 976829842673617474, guid: b5c7a8a99d9a50842b10e81476236459, type: 3}
+  - {fileID: 976829842673617474, guid: b5c7a8a99d9a50842b10e81476236459, type: 3}
   cropSeeds_list: []

@@ -16,9 +16,9 @@ public abstract class Plantable : MonoBehaviour {
     [Header("Events Listeners")]
     [SerializeField] private VoidEventChannelSO OnGrowthEvent;
 
-    private Transform currentCropPrefab;
+    protected Transform currentCropPrefab;
 
-    private int currentGrowthTick = 1;
+    protected int currentGrowthTick = 1;
 
     private void OnEnable() {
         BaseOnEnable();
@@ -64,6 +64,7 @@ public abstract class Plantable : MonoBehaviour {
     }
 
     public virtual bool CanGrowthUp() {
+
         if(currentPhase > (cropData.GetPhaseCount() - 1)) { 
             return false; 
         }
@@ -71,9 +72,10 @@ public abstract class Plantable : MonoBehaviour {
         if(currentGrowthTick < tickToGrowth) {
             currentGrowthTick++;    
             return false;
-        } 
+        }
 
         return true;
+
     }
 
     public void SetCurrentPhase(int phaseID) {
