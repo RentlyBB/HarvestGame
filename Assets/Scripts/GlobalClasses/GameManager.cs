@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     [Header("Broadcasting Events")]
     [SerializeField] private VoidEventChannelSO GameStartEvent = default;
     [SerializeField] private VoidEventChannelSO GrowthEvent = default;
+    [SerializeField] private VoidEventChannelSO SeedQueueUpdateEvent = default;
+
 
     [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
  
@@ -30,6 +32,12 @@ public class GameManager : MonoBehaviour {
         LoadLevel();
     }
 
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.R)) {
+            LoadLevel();
+        }
+    }
+
     private void OnMovementEnd() {
         GrowthEvent.RaiseEvent();
     }
@@ -41,6 +49,7 @@ public class GameManager : MonoBehaviour {
             levelData.Reset();
 
             LoadLevelEvent.RaiseEvent(levelData);
+            SeedQueueUpdateEvent.RaiseEvent();
 
         } else {
             Debug.LogError("There is no level to load. Make sure you set levelData variable in GameManager.");

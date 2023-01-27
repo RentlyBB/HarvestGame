@@ -14,7 +14,6 @@ public class CropSO : ScriptableObject {
     [Header("UI")]
     [SerializeField] public Sprite sprite;
 
-
     public Transform GetPrefab(int id) {
 
         if(id < phasePrefabs.Count) { 

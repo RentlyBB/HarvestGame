@@ -25,17 +25,16 @@ public class SeedQueue : MonoBehaviour {
     }
 
     private void Start() {
-        if(cropSeeds_list.Count > 0) {
-            foreach(Transform crop in cropSeeds_list) {
-                var tempIcon = Instantiate(iconPrefab);
-                tempIcon.SetParent(transform);
-                tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
-            }
-        }
+        //if(cropSeeds_list.Count > 0) {
+        //    foreach(Transform crop in cropSeeds_list) {
+        //        var tempIcon = Instantiate(iconPrefab);
+        //        tempIcon.SetParent(transform);
+        //        tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
+        //    }
+        //}
     }
 
     private void UpdateUI() {
-
         foreach(Transform child in transform) {
             Destroy(child.gameObject);
         }
@@ -51,6 +50,4 @@ public class SeedQueue : MonoBehaviour {
     public void GetCropSeeds(LevelDataSO levelData) {
         cropSeeds_list = levelData.cropSeeds_list;
     }
-
-
 }

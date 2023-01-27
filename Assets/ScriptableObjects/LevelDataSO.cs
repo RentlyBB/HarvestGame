@@ -6,8 +6,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class LevelDataSO : ScriptableObject {
 
-    public int width;
-    public int height;
+    public int width = 0;
+    public int height = 0;
+
+    [SerializeField] public Vector3 playerStartPoint;
 
     [SerializeField] public List<TileData> tileData_list = new List<TileData>();
     
@@ -17,7 +19,6 @@ public class LevelDataSO : ScriptableObject {
 
     //Data of crop seeds used in game 
     [HideInInspector] public List<Transform> cropSeeds_list = new List<Transform>();
-
 
     public void InitEmptyLevel() {
 

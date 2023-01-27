@@ -5,10 +5,9 @@ using UnityEditor;
 using System;
 
 public class FieldEditor : MonoBehaviour {
-    [Header("Grid Properties")]
-    [SerializeField] private float cellSize;
-
-    private GridXZ<GridObject> grid;
+     
+    private float cellSize = 1;
+    public GridXZ<GridObject> grid;
     private int width;
     private int height;
 

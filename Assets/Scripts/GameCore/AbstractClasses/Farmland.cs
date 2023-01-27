@@ -38,7 +38,7 @@ public abstract class Farmland : MonoBehaviour {
         if(CanPlantCrop()) return;
 
         if(plantedCrop.GetComponent<Plantable>().CanBeHarvest()) {
-           
+
         } else {
             OnBadHarvest.RaiseEvent(transform);
         }
@@ -46,6 +46,14 @@ public abstract class Farmland : MonoBehaviour {
         Destroy(plantedCrop.gameObject);
         plantedCrop = null;
 
+    }
+
+    public virtual bool WaterCrop() {
+        if(CanPlantCrop()) return false;
+
+        if(plantedCrop.GetComponent<Waterable>() == null) return false;
+
+        return plantedCrop.GetComponent<Waterable>().GetWatered();
     }
 
     public virtual void DestroyCrop() {

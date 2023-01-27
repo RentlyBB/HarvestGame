@@ -5,7 +5,7 @@ using UnityEngine;
 public class Planter : MonoBehaviour {
 
     [Header("Broadcasting Events")]
-    [SerializeField] private VoidEventChannelSO OnPlantEvent;
+    [SerializeField] private VoidEventChannelSO SeedQueueUpdateEvent;
 
     [Header("Listen to")]
     [SerializeField] private LevelDataEventChannelSO OnLevelLoadEvent;
@@ -20,13 +20,15 @@ public class Planter : MonoBehaviour {
         OnLevelLoadEvent.OnEventRaised -= InitCropSeeds;
     }
 
-    public void PlantCropOnFarmland(Farmland farmland) {
+    public bool PlantCropOnFarmland(Farmland farmland) {
         if(seeds_list.Count > 0) {
             if(farmland.PlantCrop(seeds_list[0])) {
                 seeds_list.RemoveAt(0);
-                OnPlantEvent.RaiseEvent();
+                SeedQueueUpdateEvent.RaiseEvent();
+                return true;
             }
         }
+        return false;
     }
 
     public void InitCropSeeds(LevelDataSO levelData) {

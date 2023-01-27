@@ -5,15 +5,20 @@ using UnityEngine;
 public class Waterable : Plantable {
 
     [Header("Broadcasting on")]
+    //UI
     [SerializeField] private VoidEventChannelSO WaterIsNeedEvent;
 
     [Header("Waterable values")]
     [SerializeField] private bool isWatered = false;
 
-    private Plantable plantable = default;
+   
 
     public override bool CanGrowthUp() {
         if(currentPhase > (cropData.GetPhaseCount() - 1)) {
+            return false;
+        }
+
+        if(!isWatered) {
             return false;
         }
 
@@ -22,20 +27,22 @@ public class Waterable : Plantable {
             return false;
         }
 
-        if(!isWatered) {
-            return false;
-        }
-
         return true;
     }
 
-    private void Awake() {
-        plantable = GetComponent<Plantable>();
+
+    private bool IsWaterNeeded() {
+        return !isWatered;
     }
 
+    public bool GetWatered() {
 
-    public void GetWatered() {
+        // Water is not needed
+        if(!IsWaterNeeded()) return false;
+        
         isWatered = true;
+
+        return true;
     }
 
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FarmlandGrid : MonoBehaviour {
+public class GridInitializator : MonoBehaviour {
 
     [Header("Grid Movement Properties")]
     [SerializeField] private Transform player = default;
@@ -13,30 +13,25 @@ public class FarmlandGrid : MonoBehaviour {
 
     [Header("Broadcasting Events")]
     [SerializeField] private VoidEventChannelSO OnMovementEndEvent = default;
+    [SerializeField] private VoidEventChannelSO OnGridInit = default;
 
     [Header("Listen to")]
     [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
-    [SerializeField] private TransformEventChannelSO OnBadHarvest = default;
-
-    // Just temp for test
-    public Transform sidewalk;
 
     private int width = default;
     private int height = default;
 
     private float cellSize = 1f;
    
-    private GridXZ<GridObject> grid = default;
+    public GridXZ<GridObject> grid = default;
 
     private PlayerBehaviour playerBehaviour = default;
 
     private void OnEnable() {
         LoadLevelEvent.OnEventRaised += InitGrid;
-        OnBadHarvest.OnEventRaised += SwitchLand;
     }
     private void OnDisable() {
         LoadLevelEvent.OnEventRaised -= InitGrid;
-        OnBadHarvest.OnEventRaised -= SwitchLand;
     }
 
     private void Awake() {
@@ -48,7 +43,6 @@ public class FarmlandGrid : MonoBehaviour {
     private void Start() {
         lastPosition = player.position;
     }
-
 
     private void Update() {
 
@@ -65,29 +59,58 @@ public class FarmlandGrid : MonoBehaviour {
 
     private void InitGrid(LevelDataSO levelData) {
 
+        ResetLevel();
+
         width = levelData.width;
         height = levelData.height;
 
         grid = new GridXZ<GridObject>(width, height, cellSize, transform.position, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
-        
+
+        StartCoroutine(SpawningGridObjects(levelData));
+
+        player.position = levelData.playerStartPoint;
+        lastPosition = player.position;
+
+        OnGridInit.RaiseEvent();
+
+    }
+
+    private IEnumerator SpawningGridObjects(LevelDataSO levelData) {
+
         // Create grid with object from levelData
         for(int x = 0; x < width; x++) {
             for(int z = 0; z < height; z++) {
                 var gridObject = grid.GetGridObject(x, z);
 
-                if(gridObject.CanCreateLand()) {
+                if(!gridObject.CanCreateLand()) {
+                    Destroy(gridObject.GetLand().gameObject);
+                }
 
-                    var tileData = levelData.GetTileDataAt(x, z);
+                var tileData = levelData.GetTileDataAt(x, z);
 
-                    if(tileData.GetLand() != null) {
-                        var land = Instantiate(tileData.GetLand().landPrefab, grid.GetWorldPositionCellCenter(x, z), Quaternion.identity);
-                        if(tileData.GetCrop() != null) {
-                            var farmland = land.GetComponent<Farmland>();
-                            farmland.PlantCrop(tileData.GetCrop(), tileData.GetStartPhase());
-                        }
-                        gridObject.ClearLand();
-                        gridObject.SetLand(land);
+                if(tileData.GetLand() != null) {
+                    var land = Instantiate(tileData.GetLand().landPrefab, grid.GetWorldPositionCellCenter(x, z), Quaternion.identity);
+                    if(tileData.GetCrop() != null) {
+                        var farmland = land.GetComponent<Farmland>();
+                        farmland.PlantCrop(tileData.GetCrop(), tileData.GetStartPhase());
                     }
+                    gridObject.ClearLand();
+                    gridObject.SetLand(land);
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+        }
+       
+    }
+
+    private void ResetLevel() {
+        nextMoves = new List<Vector3>();
+
+        for(int x = 0; x < width; x++) {
+            for(int z = 0; z < height; z++) {
+                var gridObject = grid.GetGridObject(x, z);
+                if(!gridObject.CanCreateLand()) {
+                    Destroy(gridObject.GetLand().gameObject);
                 }
             }
         }
@@ -176,15 +199,5 @@ public class FarmlandGrid : MonoBehaviour {
         } else {
             return new Vector3(1000,1000,1000);
         }
-    }
-
-    private void SwitchLand(Transform transform) {
-        var gridObject = grid.GetGridObject(transform.position);
-        
-        Destroy(transform.gameObject);
-
-        var land = Instantiate(sidewalk, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
-        gridObject.ClearLand();
-        gridObject.SetLand(land);
     }
 }

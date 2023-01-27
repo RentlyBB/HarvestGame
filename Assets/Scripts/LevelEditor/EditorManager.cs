@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using TMPro;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,6 +29,9 @@ public class EditorManager : Singleton<EditorManager>{
 
     [Header("0 - Place Tile | 1 - Place Crop")]
     public PlaceModes placeMode;
+
+    public TMP_InputField widthInputArea;
+    public TMP_InputField heightInputArea;
 
     public void Place(GridObject gridObject) {
 
@@ -146,8 +152,16 @@ public class EditorManager : Singleton<EditorManager>{
         }
     }
 
+    public void UpdateGrid() {
+        editingLevel.width = int.Parse(widthInputArea.text);
+        editingLevel.height = int.Parse(heightInputArea.text);
+        ClearLevel();
+        editingLevel.InitEmptyLevel();
+        onCreateNewLevel?.Invoke();
+    }
+
     private string CreateFileName() {
-        var myUniqueFileName = $@"{DateTime.Now.Ticks}_level.txt";
+        var myUniqueFileName = $@"{DateTime.Now.Ticks}_level";
         return myUniqueFileName;
     }
 
