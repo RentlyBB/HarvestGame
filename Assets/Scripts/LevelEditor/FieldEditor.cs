@@ -5,7 +5,10 @@ using UnityEditor;
 using System;
 
 public class FieldEditor : MonoBehaviour {
-     
+
+    [Header("Broadcasting Events")]
+    [SerializeField] private VoidEventChannelSO OnGridInit = default;
+
     private float cellSize = 1;
     public GridXZ<GridObject> grid;
     private int width;
@@ -55,6 +58,8 @@ public class FieldEditor : MonoBehaviour {
         LoadLevel();
 
         editorManager.grid = grid;
+
+        OnGridInit.RaiseEvent();
     }
 
     public void LoadLevel() {

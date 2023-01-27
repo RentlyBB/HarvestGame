@@ -647,10 +647,20 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 632312696009969764, guid: bf553c624673a5347adffd80a7faf3c2,
+        type: 3}
+      propertyPath: orthographic size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 632312696009969767, guid: bf553c624673a5347adffd80a7faf3c2,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
+        type: 3}
+      propertyPath: target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
         type: 3}

@@ -6,14 +6,17 @@ public class CameraSystem : MonoBehaviour {
 
     [SerializeField] private Camera mainCamera;
 
-    [SerializeField] private GridInitializator farmlandGrid;
+    [SerializeField] private GridInitializator gridInitializator;
 
 
     [Header("Listen to")]
     [SerializeField] private VoidEventChannelSO LoadLevelEvent = default;
 
+    public Vector3 bottomTarget;
+    public Vector3 topTarget;
+
     private void Awake() {
-        farmlandGrid = GameObject.FindGameObjectWithTag("Grid").GetComponent<GridInitializator>();
+        gridInitializator = GameObject.FindGameObjectWithTag("Grid").GetComponent<GridInitializator>();
     }
 
     private void OnEnable() {
@@ -24,8 +27,7 @@ public class CameraSystem : MonoBehaviour {
     }
 
     private void Update() {
-
-        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * 100, Color.red);
+       
     }
 
     private void UpdateCameraPosition() {
@@ -34,22 +36,44 @@ public class CameraSystem : MonoBehaviour {
 
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitPoint, float.MaxValue);
 
-        Vector3 target0;
-        Vector3 target1;
 
-        target0 = farmlandGrid.grid.GetWorldPositionCellCenter(0, 0);
-        target1 = farmlandGrid.grid.GetWorldPositionCellCenter(farmlandGrid.grid.GetWidth() -1, farmlandGrid.grid.GetHeight() - 1) ;
+        bottomTarget = gridInitializator.grid.GetWorldPositionCellCenter(0, 0);
+        topTarget = gridInitializator.grid.GetWorldPositionCellCenter(gridInitializator.grid.GetWidth() - 1, gridInitializator.grid.GetHeight() - 1);
 
-        var bounds = new Bounds(target0, Vector3.zero);
-        bounds.Encapsulate(target1);
+        var bounds = new Bounds(bottomTarget, Vector3.zero);
+        bounds.Encapsulate(topTarget);
 
         Vector3 newCamPos = bounds.center - hitPoint.point;
-        
+
         mainCamera.transform.position = new Vector3(mainCamera.transform.position.x + newCamPos.x, mainCamera.transform.position.y, mainCamera.transform.position.z + newCamPos.z);
+
+        while(!IsVisible(mainCamera, bottomTarget, 0.2f) || !IsVisible(mainCamera, topTarget, 0.2f )) {
+            mainCamera.orthographicSize += 0.2f;
+        }
+
     }
 
-    private Vector3 GetCenterPoint() {
-        return Vector3.zero;
+
+    private bool IsVisible(Camera cam, Transform targetPos, float offset = 0) {
+
+        var camPoint = cam.WorldToViewportPoint(targetPos.position);
+
+        if(camPoint.x > 1 - offset || camPoint.x < 0 + offset || camPoint.y > 1 - offset || camPoint.y < 0 + offset) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsVisible(Camera cam, Vector3 targetPos, float offset = 0) {
+
+        var camPoint = cam.WorldToViewportPoint(targetPos);
+
+        if(camPoint.x > 1 - offset || camPoint.x < 0 + offset || camPoint.y > 1 - offset || camPoint.y < 0 + offset) {
+            return false;
+        }
+
+        return true;
     }
 
 }
