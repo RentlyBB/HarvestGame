@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Events/Vector3 Event Channel")]
-public class Vector3EventChannelSO : ScriptableObject {
+public class Vector3EventChannelSO : DescriptionBaseSO {
 
 	public UnityAction<Vector3> OnEventRaised;
 

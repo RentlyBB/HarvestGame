@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Events/Transform Event Channel")]
-public class TransformEventChannelSO : ScriptableObject {
+public class TransformEventChannelSO : DescriptionBaseSO {
 
 	public UnityAction<Transform> OnEventRaised;
 

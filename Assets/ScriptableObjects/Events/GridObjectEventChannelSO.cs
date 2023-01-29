@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Events/GridObject Event Channel")]
-public class GridObjectEventChannelSO : ScriptableObject {
+public class GridObjectEventChannelSO : DescriptionBaseSO {
 
 	public UnityAction<GridObject> OnEventRaised;
 

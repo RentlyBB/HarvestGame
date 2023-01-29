@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+
     [Header("Level to be load")]
     [SerializeField] public LevelDataSO levelData = default;
 
@@ -28,15 +29,10 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         GameStartEvent.RaiseEvent();
-
         LoadLevel();
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.R)) {
-            LoadLevel();
-        }
-    }
+
 
     private void OnMovementEnd() {
         GrowthEvent.RaiseEvent();

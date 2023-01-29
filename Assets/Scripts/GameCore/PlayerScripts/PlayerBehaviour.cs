@@ -15,7 +15,6 @@ public class PlayerBehaviour : MonoBehaviour {
         waterer = GetComponent<Waterer>();
     }
 
-
     public void InteractWithTile(GridObject gridObject) {
 
         //Try plant or harvest

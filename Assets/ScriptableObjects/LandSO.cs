@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Gameplay/LandSO")]
 public class LandSO : ScriptableObject {
 
     [SerializeField] public Transform landPrefab;

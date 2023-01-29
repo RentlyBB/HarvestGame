@@ -1,0 +1,54 @@
+{
+    "name": "GameInput",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "13e529ce-cf38-40f7-8eac-e825a7a0f65c",
+            "actions": [
+                {
+                    "name": "GameClickButton",
+                    "type": "Button",
+                    "id": "ef532438-e1ef-46a1-9eb4-764222931b05",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GameReset",
+                    "type": "Button",
+                    "id": "79670d1b-e48b-4dea-b9e2-f54ffd86bd55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "72efe115-df68-4072-afa7-a7549dd32be7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameClickButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8067f195-7db4-4fae-9706-3c4b66f135e0",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameReset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Gameplay/LevelDataSO")]
 public class LevelDataSO : ScriptableObject {
 
     public int width = 0;

@@ -39,7 +39,15 @@ public class GridObject {
         return this.z;
     }
 
+    public GridXZ<GridObject> GetGrid() {
+        return g;
+    }
+
     public override string ToString() {
         return x + ", " + z;
+    }
+
+    public Vector3 GetWorldPositionCellCenter() {
+        return g.GetWorldPositionCellCenter(x, z);
     }
 }

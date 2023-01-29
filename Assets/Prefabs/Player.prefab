@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1484417440351426084}
   - component: {fileID: 1484417440351426085}
   - component: {fileID: 1484417440351426093}
+  - component: {fileID: 1860347920}
   - component: {fileID: 1484417440351426082}
   - component: {fileID: 1484417440351426083}
   - component: {fileID: 1484417440351426092}
@@ -36,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &1484417440351426087
 MeshFilter:
@@ -114,6 +115,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462b228baa373eb429c8a17ea18ba5d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1860347920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484417440351426106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df822387fb43e714caeea963361c6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 4
+  allowDiagonalMovement: 1
+  OnMovementEndEvent: {fileID: 11400000, guid: ef64071a7c3e01e4fb59e6d613ff561e, type: 2}
+  AddNextMoveEvent: {fileID: 11400000, guid: 4efe7a04f66141544a8031beaac1489a, type: 2}
 --- !u!114 &1484417440351426082
 MonoBehaviour:
   m_ObjectHideFlags: 0

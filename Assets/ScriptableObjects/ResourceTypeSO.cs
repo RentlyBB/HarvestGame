@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Gameplay/ResourceTypeSO")]
 public class ResourceTypeSO : ScriptableObject {
 
     public string typeName;

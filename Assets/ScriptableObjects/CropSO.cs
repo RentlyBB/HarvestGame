@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Gameplay/CropSO")]
 public class CropSO : ScriptableObject {
 
     [SerializeField] private List<Transform> phasePrefabs;

@@ -6,6 +6,7 @@ public abstract class Farmland : MonoBehaviour {
 
     protected Transform plantedCrop;
 
+    [Header("Broadcasting On")]
     [SerializeField] private TransformEventChannelSO OnBadHarvest;
 
     private void Start() {
