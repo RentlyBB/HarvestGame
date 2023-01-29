@@ -6,7 +6,7 @@ public class CameraSystem : MonoBehaviour {
 
     [SerializeField] private Camera mainCamera;
 
-    [SerializeField] private GridInitializator gridInitializator;
+    [SerializeField] private GridInitializer gridInitializator;
 
 
     [Header("Listen to")]
@@ -16,7 +16,11 @@ public class CameraSystem : MonoBehaviour {
     public Vector3 topTarget;
 
     private void Awake() {
-        gridInitializator = GameObject.FindGameObjectWithTag("Grid").GetComponent<GridInitializator>();
+        var grid = GameObject.FindGameObjectWithTag("Grid");
+
+        if(grid != null) {
+            gridInitializator = grid.GetComponent<GridInitializer>();
+        }
     }
 
     private void OnEnable() {
@@ -31,6 +35,9 @@ public class CameraSystem : MonoBehaviour {
     }
 
     private void UpdateCameraPosition() {
+
+        if(mainCamera == null) return;
+        if(gridInitializator == null) return;
 
         RaycastHit hitPoint;
 

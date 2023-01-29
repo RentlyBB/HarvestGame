@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridInitializator : MonoBehaviour {
+public class GridInitializer : MonoBehaviour {
 
     [Header("Grid Movement Properties")]
     [SerializeField] private Transform player = default;
@@ -41,7 +41,9 @@ public class GridInitializator : MonoBehaviour {
     }
 
     private void Start() {
-        lastPosition = player.position;
+        if(player != null) {
+            lastPosition = player.position;
+        }
     }
 
     private void Update() {
