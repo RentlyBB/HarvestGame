@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3991720372770425337}
-  - component: {fileID: -8115049676540568974}
+  - component: {fileID: 4587382015380621740}
   - component: {fileID: 6975704654290864050}
   m_Layer: 0
   m_Name: Sidewalk
@@ -152,7 +152,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8115049676540568974
+--- !u!114 &4587382015380621740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3991720372770425333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6db57a4ce225543894633022eb4aad, type: 3}
+  m_Script: {fileID: 11500000, guid: ccc54c586aa9bce41838512c68d30b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1

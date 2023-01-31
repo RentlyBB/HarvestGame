@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace HarvestCode.Core {
-    public abstract class Plantable : MonoBehaviour {
+    public class Plantable : MonoBehaviour {
         public enum CropState { Not_Harvestable, Harvestable, Rotten };
 
         [SerializeField] public CropSO cropData;

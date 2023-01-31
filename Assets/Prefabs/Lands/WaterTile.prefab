@@ -107,9 +107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4233675630601021921}
-  - component: {fileID: 199834422428498538}
   - component: {fileID: 4763748663656288201}
-  - component: {fileID: 6123333210790733972}
+  - component: {fileID: 7378969999232017220}
+  - component: {fileID: 4938618322717085516}
   m_Layer: 0
   m_Name: WaterTile
   m_TagString: Untagged
@@ -133,19 +133,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &199834422428498538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4233675630601021933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6db57a4ce225543894633022eb4aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isWalkable: 1
 --- !u!114 &4763748663656288201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6207306793509214327}
---- !u!114 &6123333210790733972
+--- !u!114 &7378969999232017220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +155,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4233675630601021933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1306a061d22fd90429aed499aec93399, type: 3}
+  m_Script: {fileID: 11500000, guid: ccc54c586aa9bce41838512c68d30b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWalkable: 1
+--- !u!114 &4938618322717085516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233675630601021933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51a746a7108cda4492727fc112f8d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resource: {fileID: 11400000, guid: 5cbf23b579311154bbc7d56ca5179835, type: 2}

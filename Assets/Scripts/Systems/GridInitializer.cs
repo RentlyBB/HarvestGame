@@ -54,7 +54,6 @@ namespace HarvestCode.Systems {
             StartCoroutine(SpawningGridObjects());
 
             OnGridInitEvent.Raise();
-
         }
 
         private IEnumerator SpawningGridObjects() {

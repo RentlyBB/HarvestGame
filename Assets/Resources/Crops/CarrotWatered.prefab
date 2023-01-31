@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 976829842673617474}
-  - component: {fileID: -5788270265791886486}
+  - component: {fileID: 2877525587182604935}
   - component: {fileID: 8459880402937693939}
   m_Layer: 0
   m_Name: CarrotWatered
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5788270265791886486
+--- !u!114 &2877525587182604935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 976829842673617476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec5eb4edb0c7d649aaf0a28df9c1ac5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9172fbc91a49ce94093fa8fc12a96c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cropData: {fileID: 11400000, guid: d284dfe1c3547fe41b5cd730698e7020, type: 2}
@@ -51,7 +51,6 @@ MonoBehaviour:
   state: 0
   tickToGrowth: 2
   OnGrowthEvent: {fileID: 11400000, guid: e35d96b065d95c740bf57961c3153fce, type: 2}
-  WaterIsNeedEvent: {fileID: 0}
   isWatered: 0
 --- !u!114 &8459880402937693939
 MonoBehaviour:

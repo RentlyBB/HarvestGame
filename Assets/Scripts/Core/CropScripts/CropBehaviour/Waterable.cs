@@ -5,14 +5,8 @@ using UnityEngine;
 namespace HarvestCode.Core {
     public class Waterable : Plantable {
 
-        [Header("Broadcasting on")]
-        //UI
-        [SerializeField] private VoidEventChannelSO WaterIsNeedEvent;
-
         [Header("Waterable values")]
-        [SerializeField] private bool isWatered = false;
-
-
+        [SerializeField] protected bool isWatered = false;
 
         public override bool CanGrowthUp() {
             if(currentPhase > (cropData.GetPhaseCount() - 1)) {
@@ -30,7 +24,6 @@ namespace HarvestCode.Core {
 
             return true;
         }
-
 
         private bool IsWaterNeeded() {
             return !isWatered;

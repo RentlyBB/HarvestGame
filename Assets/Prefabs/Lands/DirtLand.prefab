@@ -127,9 +127,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6476319157060823691}
-  - component: {fileID: 6476319157060823690}
-  - component: {fileID: -1038618259898317734}
   - component: {fileID: 7471541788757746146}
+  - component: {fileID: 7912046504095744093}
+  - component: {fileID: 3816763154349139192}
   m_Layer: 0
   m_Name: DirtLand
   m_TagString: Untagged
@@ -153,32 +153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6476319157060823690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6476319157060823687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7faa7da0008752a4c89e462f4aeb8ee5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnBadHarvest: {fileID: 11400000, guid: c85da7ae104279b489ead66d28b239c4, type: 2}
---- !u!114 &-1038618259898317734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6476319157060823687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6db57a4ce225543894633022eb4aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isWalkable: 1
 --- !u!114 &7471541788757746146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +166,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6671172423360680577}
+--- !u!114 &7912046504095744093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476319157060823687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc54c586aa9bce41838512c68d30b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWalkable: 1
+--- !u!114 &3816763154349139192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476319157060823687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a04be656b2a8424f96780faaea2373e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBadHarvest: {fileID: 11400000, guid: c85da7ae104279b489ead66d28b239c4, type: 2}

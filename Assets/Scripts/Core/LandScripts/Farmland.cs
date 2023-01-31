@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace HarvestCode.Core {
-    public abstract class Farmland : MonoBehaviour {
+    public class Farmland : MonoBehaviour {
 
         protected Transform plantedCrop;
 
