@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using HarvestCode.Core;
 
-public class CropButton : MonoBehaviour {
+namespace HarvestCode.LevelEditor {
+    public class CropButton : MonoBehaviour {
 
-    public Transform cropToSelect;
+        public Transform cropToSelect;
 
-    //private TextMeshProUGUI text;
+        //private TextMeshProUGUI text;
 
-    private Image img;
+        private Image img;
 
-    private void Start() {
+        private void Start() {
 
-        img = GetComponent<Image>();
-        img.sprite = cropToSelect.GetComponent<Plantable>().cropData.sprite;
-    }
+            img = GetComponent<Image>();
+            img.sprite = cropToSelect.GetComponent<Plantable>().cropData.sprite;
+        }
 
-    public void Select() {
-        EditorManager.Instance.selectedCrop = cropToSelect;
-        EditorManager.Instance.placeMode = PlaceModes.CropMode;
+        public void Select() {
+            EditorManager.Instance.selectedCrop = cropToSelect;
+            EditorManager.Instance.placeMode = PlaceModes.CropMode;
+        }
     }
 }

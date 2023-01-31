@@ -3,31 +3,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+namespace HarvestCode.LevelEditor {
+    public class LandButton : MonoBehaviour {
 
-public class LandButton : MonoBehaviour {
+        public LandSO landToSelect;
 
-    public LandSO landToSelect;
+        private TextMeshProUGUI text;
 
-    private TextMeshProUGUI text;
+        private void Start() {
+            if(landToSelect != null) {
+                UpdateBtnText();
+            }
+        }
 
-    private void Start() {
-        if(landToSelect != null) {
+        public void SetLandToSelect(LandSO land) {
+            landToSelect = land;
             UpdateBtnText();
         }
-    }
 
-    public void SetLandToSelect(LandSO land) {
-        landToSelect = land;
-        UpdateBtnText();
-    }
+        private void UpdateBtnText() {
+            text = GetComponentInChildren<TextMeshProUGUI>();
+            text.text = landToSelect.name;
+        }
 
-    private void UpdateBtnText() {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        text.text = landToSelect.name;
-    }
-
-    public void Select() {
-        EditorManager.Instance.selectedLand = landToSelect;
-        EditorManager.Instance.placeMode = PlaceModes.LandMode;
+        public void Select() {
+            EditorManager.Instance.selectedLand = landToSelect;
+            EditorManager.Instance.placeMode = PlaceModes.LandMode;
+        }
     }
 }
