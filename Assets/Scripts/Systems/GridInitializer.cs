@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using RnT.Utils;
+using RnT.Utilities;
+using RnT.ScriptableObjectArchitecture;
 using HarvestCode.Core;
-using ScriptableObjectArchitecture;
 
 
 namespace HarvestCode.Systems {
@@ -16,8 +15,8 @@ namespace HarvestCode.Systems {
         [Space, SerializeField] private InputReaderSO _inputReader = default;
 
         [Header("Broadcasting Events")]
-        [SerializeField] private GameEvent OnGridInitEvent = default;
-
+        [SerializeField] private VoidEventChannelSO GridInitEvent = default;
+     
         [SerializeField] private GridObjectEventChannelSO AddNextMoveEvent = default;
 
         [Header("Listen to")]
@@ -42,7 +41,7 @@ namespace HarvestCode.Systems {
             LoadLevelEvent.OnEventRaised -= LoadLevelData;
         }
 
-        private void LoadLevelData(LevelDataSO levelData) {
+        public void LoadLevelData(LevelDataSO levelData) {
             this.levelData = levelData;
             InitGrid();
         }
@@ -53,7 +52,7 @@ namespace HarvestCode.Systems {
 
             StartCoroutine(SpawningGridObjects());
 
-            OnGridInitEvent.Raise();
+            GridInitEvent.RaiseEvent();
         }
 
         private IEnumerator SpawningGridObjects() {
@@ -96,7 +95,6 @@ namespace HarvestCode.Systems {
 
             InitGrid();
         }
-
 
         private void MouseClickOnGrid() {
             Vector3 position = Utils.GetMousePosition3D();

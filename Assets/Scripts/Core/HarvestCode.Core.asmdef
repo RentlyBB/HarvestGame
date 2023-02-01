@@ -2,7 +2,8 @@
     "name": "HarvestCode.Core",
     "rootNamespace": "",
     "references": [
-        "GUID:3dd208b7edb2aaa49951f4f96eb0e69f"
+        "GUID:1c7db2f97d9e3e745ad7e1dbba1a5c42",
+        "GUID:582d36154600aa44c91114811080933b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

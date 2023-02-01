@@ -2,6 +2,7 @@
 using UnityEngine;
 using HarvestCode.Core;
 
+[System.Serializable]
 [CreateAssetMenu(menuName = "Gameplay/LevelDataSO")]
 public class LevelDataSO : ScriptableObject {
 

@@ -9,8 +9,20 @@ namespace HarvestCode.Systems {
 
         [SerializeField] private GridInitializer gridInitializator;
 
+        [Header("Listening to")]
+        [SerializeField] private VoidEventChannelSO GridInitEvent = default;
+
+        [Space]
         public Vector3 bottomTarget;
         public Vector3 topTarget;
+
+        private void OnEnable() {
+            GridInitEvent.OnEventRaised += UpdateCameraPosition;
+        }
+
+        private void OnDisable() {
+            GridInitEvent.OnEventRaised -= UpdateCameraPosition;
+        }
 
         private void Awake() {
             var grid = GameObject.FindGameObjectWithTag("Grid");

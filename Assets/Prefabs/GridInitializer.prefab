@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   _inputReader: {fileID: 11400000, guid: fb20446b4c19dbb4592cef5846cdbf10, type: 2}
-  OnGridInitEvent: {fileID: 11400000, guid: d787575f57ff47642b05ae0eaef8fb58, type: 2}
+  GridInitEvent: {fileID: 11400000, guid: 10003f5c40edf8b4bbbb6432b1f44a90, type: 2}
   AddNextMoveEvent: {fileID: 11400000, guid: 4efe7a04f66141544a8031beaac1489a, type: 2}
   LoadLevelEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}

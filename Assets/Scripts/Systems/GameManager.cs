@@ -13,7 +13,6 @@ namespace HarvestCode.Systems {
         [SerializeField] private VoidEventChannelSO GrowthEvent = default;
         [SerializeField] private VoidEventChannelSO SeedQueueUpdateEvent = default;
 
-
         [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
 
         [Header("Listen to")]
@@ -46,6 +45,7 @@ namespace HarvestCode.Systems {
                 levelData.Reset();
 
                 LoadLevelEvent.RaiseEvent(levelData);
+
                 SeedQueueUpdateEvent.RaiseEvent();
 
             } else {

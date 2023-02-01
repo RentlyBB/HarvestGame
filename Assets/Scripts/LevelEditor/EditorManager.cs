@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using TMPro;
-using RnT.Utils;
+using RnT.Utilities;
 using HarvestCode.Core;
 
 #if UNITY_EDITOR

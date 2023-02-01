@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &92695318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1484417440351426106, guid: 9299d8b0038360240911e5f1d407e13a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1684074241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &92695323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1484417440351426093, guid: 9299d8b0038360240911e5f1d407e13a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1684074241}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92695318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462b228baa373eb429c8a17ea18ba5d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &92695328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92695318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137e054c25b8c014197204dab4994862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: e577e65536c3263448f5862903b55a65, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 92695323}
+        m_TargetAssemblyTypeName: HarvestCode.Core.PlayerBehaviour, HarvestCode.Core
+        m_MethodName: Test
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &292743366
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +289,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
         type: 3}
+      propertyPath: GridInitEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 10003f5c40edf8b4bbbb6432b1f44a90,
+        type: 2}
+    - target: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
+        type: 3}
       propertyPath: gridInitializator
       value: 
       objectReference: {fileID: 876196973}
@@ -308,56 +361,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: bf553c624673a5347adffd80a7faf3c2, type: 3}
---- !u!1 &1665573543 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 632312697994820487, guid: bf553c624673a5347adffd80a7faf3c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1665573542}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1665573544 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1665573542}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665573543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5abe224268208c418a3345e2beb6167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1665573545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665573543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 1
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
-  _event: {fileID: 11400000, guid: d787575f57ff47642b05ae0eaef8fb58, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1665573544}
-        m_TargetAssemblyTypeName: CameraSystem, Assembly-CSharp
-        m_MethodName: UpdateCameraPosition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1684074241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -508,6 +511,17 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1152996119303849276, guid: cab15e568268faa4c9c24b4071218c35,
+        type: 3}
+      propertyPath: OnLoadLeveEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: adc8d41f4285ab44486c1033b7c6f00f,
+        type: 2}
+    - target: {fileID: 1152996119303849276, guid: cab15e568268faa4c9c24b4071218c35,
+        type: 3}
+      propertyPath: OnLoadLevelEvent
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1152996119303849277, guid: cab15e568268faa4c9c24b4071218c35,
         type: 3}
       propertyPath: m_RootOrder

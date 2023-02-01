@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using RnT.ScriptableObjectArchitecture;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
 public class InputReaderSO : DescriptionBaseSO, GameInput.IGameplayActions {
