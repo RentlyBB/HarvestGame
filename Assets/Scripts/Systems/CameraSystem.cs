@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HarvestCode.Systems {
@@ -9,20 +7,9 @@ namespace HarvestCode.Systems {
 
         [SerializeField] private GridInitializer gridInitializator;
 
-        [Header("Listening to")]
-        [SerializeField] private VoidEventChannelSO GridInitEvent = default;
-
         [Space]
         public Vector3 bottomTarget;
         public Vector3 topTarget;
-
-        private void OnEnable() {
-            GridInitEvent.OnEventRaised += UpdateCameraPosition;
-        }
-
-        private void OnDisable() {
-            GridInitEvent.OnEventRaised -= UpdateCameraPosition;
-        }
 
         private void Awake() {
             var grid = GameObject.FindGameObjectWithTag("Grid");
@@ -30,11 +17,6 @@ namespace HarvestCode.Systems {
             if(grid != null) {
                 gridInitializator = grid.GetComponent<GridInitializer>();
             }
-        }
-
-
-        private void Update() {
-
         }
 
         public void UpdateCameraPosition() {
@@ -62,7 +44,6 @@ namespace HarvestCode.Systems {
             }
 
         }
-
 
         private bool IsVisible(Camera cam, Transform targetPos, float offset = 0) {
 

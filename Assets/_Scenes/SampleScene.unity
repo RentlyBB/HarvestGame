@@ -287,12 +287,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1724081811 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1484417440351426086, guid: 9299d8b0038360240911e5f1d407e13a,
+--- !u!114 &1075457449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1735488396342163333, guid: 2792d532a44ad5645a89c9e36b901fa9,
     type: 3}
-  m_PrefabInstance: {fileID: 1484417441857138869}
+  m_PrefabInstance: {fileID: 1735488395006918529}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76427b1bf59f93747aedf06bc37827dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &632312696626706285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,31 +307,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 632312696009969764, guid: bf553c624673a5347adffd80a7faf3c2,
-        type: 3}
-      propertyPath: orthographic size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 632312696009969767, guid: bf553c624673a5347adffd80a7faf3c2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.135
-      objectReference: {fileID: 0}
-    - target: {fileID: 632312696009969767, guid: bf553c624673a5347adffd80a7faf3c2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.116
-      objectReference: {fileID: 0}
     - target: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
         type: 3}
-      propertyPath: target
+      propertyPath: gridInitializator
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 632312697994820481, guid: bf553c624673a5347adffd80a7faf3c2,
-        type: 3}
-      propertyPath: farmlandGrid
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1075457449}
     - target: {fileID: 632312697994820486, guid: bf553c624673a5347adffd80a7faf3c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -599,11 +585,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridInitializer
       objectReference: {fileID: 0}
-    - target: {fileID: 1735488396342163333, guid: 2792d532a44ad5645a89c9e36b901fa9,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1724081811}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2792d532a44ad5645a89c9e36b901fa9, type: 3}

@@ -1,9 +1,8 @@
+using ScriptableObjectArchitecture;
 using System.Collections;
-using UnityEngine;
-using RnT.Utilities;
-using RnT.ScriptableObjectArchitecture;
 using HarvestCode.Core;
-
+using RnT.Utilities;
+using UnityEngine;
 
 namespace HarvestCode.Systems {
     public class GridInitializer : MonoBehaviour {
@@ -15,12 +14,8 @@ namespace HarvestCode.Systems {
         [Space, SerializeField] private InputReaderSO _inputReader = default;
 
         [Header("Broadcasting Events")]
-        [SerializeField] private VoidEventChannelSO GridInitEvent = default;
-     
-        [SerializeField] private GridObjectEventChannelSO AddNextMoveEvent = default;
-
-        [Header("Listen to")]
-        [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
+        [SerializeField] private GameEvent GridInitEvent = default(GameEvent);
+        [SerializeField] private GridObjectGameEvent AddNextMoveEvent = default;
 
         private LevelDataSO levelData = default;
 
@@ -32,13 +27,11 @@ namespace HarvestCode.Systems {
         private void OnEnable() {
             _inputReader.GameClickButton += MouseClickOnGrid;
             _inputReader.GameResetEvent += ResetLevel;
-            LoadLevelEvent.OnEventRaised += LoadLevelData;
         }
 
         private void OnDisable() {
             _inputReader.GameClickButton -= MouseClickOnGrid;
             _inputReader.GameResetEvent -= ResetLevel;
-            LoadLevelEvent.OnEventRaised -= LoadLevelData;
         }
 
         public void LoadLevelData(LevelDataSO levelData) {
@@ -52,7 +45,7 @@ namespace HarvestCode.Systems {
 
             StartCoroutine(SpawningGridObjects());
 
-            GridInitEvent.RaiseEvent();
+            GridInitEvent.Raise();
         }
 
         private IEnumerator SpawningGridObjects() {
@@ -101,9 +94,12 @@ namespace HarvestCode.Systems {
 
             var gridObject = grid.GetGridObject(position);
 
-            if(gridObject == null) return;
+            Debug.Log("Ahoj" + gridObject.GetX() + ", " + gridObject.GetZ());
+            
 
-            AddNextMoveEvent.RaiseEvent(gridObject);
+            Debug.Log("Ahoj after");
+
+            AddNextMoveEvent.Raise(gridObject);
         }
     }
 }

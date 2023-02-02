@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ScriptableObjectArchitecture;
 
 namespace HarvestCode.Core {
     public class GridMovement : MonoBehaviour {
@@ -9,10 +10,7 @@ namespace HarvestCode.Core {
         [SerializeField] private bool allowDiagonalMovement = true;
 
         [Header("Broadcasting Events")]
-        [SerializeField] private VoidEventChannelSO OnMovementEndEvent = default;
-
-        [Header("Listen to")]
-        [SerializeField] private GridObjectEventChannelSO AddNextMoveEvent = default;
+        [SerializeField] private GameEvent OnMovementEndEvent = default(GameEvent);
 
         // List of GridObjects which hold position where player wants to go
         private List<GridObject> nextMoves = new List<GridObject>();
@@ -24,11 +22,9 @@ namespace HarvestCode.Core {
 
 
         private void OnEnable() {
-            AddNextMoveEvent.OnEventRaised += CalculateNextMove;
         }
 
         private void OnDisable() {
-            AddNextMoveEvent.OnEventRaised -= CalculateNextMove;
         }
 
         private void Start() {
@@ -80,7 +76,7 @@ namespace HarvestCode.Core {
 
                 interator.InteractWithTile(lastPosition);
 
-                OnMovementEndEvent.RaiseEvent();
+                OnMovementEndEvent.Raise();
 
                 nextMoves.RemoveAt(0);
             }
@@ -88,7 +84,6 @@ namespace HarvestCode.Core {
 
         private bool CheckIfWalkable(GridObject gridObject) {
 
-            if(gridObject == null) return false;
 
             var walkable = gridObject.GetLand().GetComponent<Walkable>();
 

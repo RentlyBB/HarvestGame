@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632312696009969771}
   m_LocalRotation: {x: 0.38312978, y: 0.34822643, z: -0.15869755, w: 0.84069324}
-  m_LocalPosition: {x: -0.39, y: 2.32, z: -0.75}
+  m_LocalPosition: {x: 0.135, y: 2.32, z: -0.116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632312697994820486}
   - component: {fileID: 632312697994820481}
+  - component: {fileID: 759187786}
   m_Layer: 0
   m_Name: CameraSystem
   m_TagString: Untagged
@@ -164,5 +165,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 632312696009969764}
-  farmlandGrid: {fileID: 0}
-  LoadLevelEvent: {fileID: 11400000, guid: 10003f5c40edf8b4bbbb6432b1f44a90, type: 2}
+  gridInitializator: {fileID: 0}
+  bottomTarget: {x: 0, y: 0, z: 0}
+  topTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &759187786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632312697994820487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 3b634bf190181d74397286e016fe8c12,
+    type: 2}
+  _event: {fileID: 11400000, guid: 3b634bf190181d74397286e016fe8c12, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 632312697994820481}
+        m_TargetAssemblyTypeName: HarvestCode.Systems.CameraSystem, Assembly-CSharp
+        m_MethodName: UpdateCameraPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

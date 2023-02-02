@@ -11,22 +11,7 @@ namespace HarvestCode.UI {
 
         [SerializeField] private Transform iconPrefab;
 
-        [Header("Listen to")]
-        [SerializeField] private VoidEventChannelSO SeedQueueUpdateEvent;
-        [SerializeField] private LevelDataEventChannelSO OnLevelLoadEvent;
-
-
-        private void OnEnable() {
-            OnLevelLoadEvent.OnEventRaised += GetCropSeeds;
-            SeedQueueUpdateEvent.OnEventRaised += UpdateUI;
-        }
-
-        private void OnDisable() {
-            OnLevelLoadEvent.OnEventRaised -= GetCropSeeds;
-            SeedQueueUpdateEvent.OnEventRaised -= UpdateUI;
-        }
-
-        private void UpdateUI() {
+        public void UpdateUI() {
             foreach(Transform child in transform) {
                 Destroy(child.gameObject);
             }
