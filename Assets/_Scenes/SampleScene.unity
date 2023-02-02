@@ -383,6 +383,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1152996119303849276, guid: cab15e568268faa4c9c24b4071218c35,
+        type: 3}
+      propertyPath: levelData
+      value: 
+      objectReference: {fileID: 11400000, guid: f340a7c135268f84c933a2243672d279,
+        type: 2}
     - target: {fileID: 1152996119303849277, guid: cab15e568268faa4c9c24b4071218c35,
         type: 3}
       propertyPath: m_RootOrder
@@ -454,6 +460,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1860347920, guid: 9299d8b0038360240911e5f1d407e13a, type: 3}
+      propertyPath: _inputReader
+      value: 
+      objectReference: {fileID: 11400000, guid: fb20446b4c19dbb4592cef5846cdbf10,
+        type: 2}
     - target: {fileID: 1484417440351426086, guid: 9299d8b0038360240911e5f1d407e13a,
         type: 3}
       propertyPath: m_RootOrder

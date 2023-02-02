@@ -25,7 +25,7 @@ namespace HarvestCode.UI {
         }
 
         public void GetCropSeeds(LevelDataSO levelData) {
-            cropSeeds_list = levelData.cropSeeds_list;
+            cropSeeds_list = levelData.seeds_list;
         }
     }
 }

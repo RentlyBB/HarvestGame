@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using RnT.Utilities;
 using HarvestCode.Core;
+using ScriptableObjectArchitecture;
 
 
 namespace HarvestCode.LevelEditor {
     public class FieldEditor : MonoBehaviour {
 
+        [SerializeField] private InputReaderSO _inputReader;
+
         [Header("Broadcasting Events")]
-        [SerializeField] private VoidEventChannelSO OnGridInit = default;
+        [SerializeField] private GameEvent OnGridInit = default(GameEvent);
 
         private float cellSize = 1;
         public GridXZ<GridObject> grid;
@@ -20,36 +23,45 @@ namespace HarvestCode.LevelEditor {
 
         private void OnEnable() {
             EditorManager.onCreateNewLevel += InitGrid;
+            _inputReader.PlaceOnGrid += PlaceOnGrid;
+            _inputReader.RemoveFromGrid += RemoveFromGrid;
         }
 
         private void OnDisable() {
             EditorManager.onCreateNewLevel -= InitGrid;
+            _inputReader.PlaceOnGrid -= PlaceOnGrid;
+            _inputReader.RemoveFromGrid -= RemoveFromGrid;
         }
 
         private void Start() {
+
+            _inputReader.EnableLevelEditorInput();
+
             editorManager = EditorManager.Instance;
+
             InitGrid();
         }
 
-        private void Update() {
-            if(Input.GetMouseButtonDown(0)) {
-                Vector3 position = GetMousePosition3D();
-                var clickedGridObject = grid.GetGridObject(position);
+        private void PlaceOnGrid() {
+            Vector3 position = Utils.GetMousePosition3D();
 
-                if(clickedGridObject != null) {
-                    editorManager.Place(clickedGridObject);
-                }
-            }
+            var gridObject = grid.GetGridObject(position);
 
-            if(Input.GetMouseButtonDown(1)) {
-                Vector3 position = GetMousePosition3D();
-                var clickedGridObject = grid.GetGridObject(position);
+            if(gridObject == null) return;
 
-                if(clickedGridObject != null) {
-                    editorManager.RemoveTileFromGrid(clickedGridObject);
-                }
-            }
+            editorManager.Place(gridObject);
         }
+
+        private void RemoveFromGrid() {
+            Vector3 position = Utils.GetMousePosition3D();
+
+            var gridObject = grid.GetGridObject(position);
+
+            if(gridObject == null) return;
+
+            editorManager.RemoveTileFromGrid(gridObject);
+        }
+
 
         private void InitGrid() {
             width = editorManager.editingLevel.width;
@@ -61,7 +73,7 @@ namespace HarvestCode.LevelEditor {
 
             editorManager.grid = grid;
 
-            OnGridInit.RaiseEvent();
+            OnGridInit.Raise();
         }
 
         public void LoadLevel() {
@@ -89,15 +101,6 @@ namespace HarvestCode.LevelEditor {
                         }
                     }
                 }
-            }
-        }
-
-        private Vector3 GetMousePosition3D() {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue)) {
-                return raycastHit.point;
-            } else {
-                return new Vector3(1000, 1000, 1000);
             }
         }
     }

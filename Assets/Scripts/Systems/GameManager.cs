@@ -6,15 +6,14 @@ using ScriptableObjectArchitecture;
 namespace HarvestCode.Systems {
     public class GameManager : MonoBehaviour {
 
-        [Header("Level to be load")]
-        [SerializeField] public LevelDataSO levelData = default;
+        // This is a root of leveldata, form here data are send to every object who needs it.
+        [Header("Level to be load"), SerializeField] public LevelDataSO levelData = default; 
 
         [Header("Broadcasting Events")]
         [SerializeField] private LevelDataSOGameEvent LoadLevelEvent = default(LevelDataSOGameEvent);
         [SerializeField] private GameEvent GrowthEvent = default(GameEvent);
         [SerializeField] private GameEvent GameStartEvent = default(GameEvent);
         [SerializeField] private GameEvent SeedQueueUpdateEvent = default(GameEvent);
-
 
         private void Start() {
             GameStartEvent.Raise();
@@ -28,9 +27,6 @@ namespace HarvestCode.Systems {
         private void LoadLevel() {
             if(levelData != null) {
 
-                // Reset non persistant data
-                levelData.Reset();
-
                 LoadLevelEvent.Raise(levelData);
 
                 SeedQueueUpdateEvent.Raise();
@@ -39,7 +35,5 @@ namespace HarvestCode.Systems {
                 Debug.LogError("There is no level to load. Make sure you set levelData variable in GameManager.");
             }
         }
-
-
     }
 }

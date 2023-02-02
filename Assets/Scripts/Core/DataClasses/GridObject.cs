@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HarvestCode.Core {
     [System.Serializable]
-    public class GridObject : Object {
+    public class GridObject  {
 
         private GridXZ<GridObject> g;
         private int x;

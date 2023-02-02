@@ -1,10 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ScriptableObjectArchitecture;
 
 namespace HarvestCode.Core {
     public class GridMovement : MonoBehaviour {
+
+        [SerializeField] private InputReaderSO _inputReader;
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private bool allowDiagonalMovement = true;
@@ -16,19 +17,20 @@ namespace HarvestCode.Core {
         private List<GridObject> nextMoves = new List<GridObject>();
 
         // Last grid object where player was on
-        private GridObject lastPosition;
+        private GridObject lastPosition = null;
 
-        private PlayerBehaviour interator;
-
+        private PlayerBehaviour interactor;
 
         private void OnEnable() {
+            _inputReader.GameResetEvent += ResetMovement;
         }
 
         private void OnDisable() {
+            _inputReader.GameResetEvent -= ResetMovement;
         }
 
         private void Start() {
-            interator = GetComponent<PlayerBehaviour>();
+            interactor = GetComponent<PlayerBehaviour>();
         }
 
         private void Update() {
@@ -36,6 +38,8 @@ namespace HarvestCode.Core {
         }
 
         public void CalculateNextMove(GridObject gridObject) {
+
+            if(gridObject == null) return;
 
             //Check if the land is walkable
             if(!CheckIfWalkable(gridObject)) {
@@ -74,7 +78,7 @@ namespace HarvestCode.Core {
             if(Vector3.Distance(transform.position, targetPosition) < 0.001f) {
                 lastPosition = nextMoves[0];
 
-                interator.InteractWithTile(lastPosition);
+                interactor.InteractWithTile(lastPosition);
 
                 OnMovementEndEvent.Raise();
 
@@ -84,6 +88,7 @@ namespace HarvestCode.Core {
 
         private bool CheckIfWalkable(GridObject gridObject) {
 
+            if(gridObject.GetLand() == null) return false;
 
             var walkable = gridObject.GetLand().GetComponent<Walkable>();
 
@@ -114,5 +119,9 @@ namespace HarvestCode.Core {
             return true;
         }
 
+        private void ResetMovement() {
+            lastPosition = null;
+            nextMoves = new List<GridObject>();
+        }
     }
 }

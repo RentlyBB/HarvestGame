@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using ScriptableObjectArchitecture;
 
@@ -9,7 +8,9 @@ namespace HarvestCode.Core {
         [Header("Broadcasting Events")]
         [SerializeField] private GameEvent SeedQueueUpdateEvent;
 
-        private List<Transform> seeds_list;
+        private List<Transform> persistentSeeds_list;
+
+        public List<Transform> seeds_list;
 
         public bool PlantCropOnFarmland(Farmland farmland) {
             if(seeds_list.Count > 0) {
@@ -22,8 +23,14 @@ namespace HarvestCode.Core {
             return false;
         }
 
+        // Listening to LoadLevelData
         public void InitCropSeeds(LevelDataSO levelData) {
-            seeds_list = levelData.cropSeeds_list;
+            persistentSeeds_list = levelData.seeds_list;
+            ResetPlanter();
+        }
+
+        public void ResetPlanter() {
+            seeds_list = new List<Transform>(persistentSeeds_list);
         }
     }
 }

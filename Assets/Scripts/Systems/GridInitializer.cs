@@ -10,7 +10,6 @@ namespace HarvestCode.Systems {
 #if UNITY_EDITOR
         [TextArea] public string description;
 #endif
-
         [Space, SerializeField] private InputReaderSO _inputReader = default;
 
         [Header("Broadcasting Events")]
@@ -23,15 +22,18 @@ namespace HarvestCode.Systems {
 
         public GridXZ<GridObject> grid = default;
 
-
         private void OnEnable() {
-            _inputReader.GameClickButton += MouseClickOnGrid;
+            _inputReader.MoveOnGrid += MouseClickOnGrid;
             _inputReader.GameResetEvent += ResetLevel;
         }
 
         private void OnDisable() {
-            _inputReader.GameClickButton -= MouseClickOnGrid;
+            _inputReader.MoveOnGrid -= MouseClickOnGrid;
             _inputReader.GameResetEvent -= ResetLevel;
+        }
+
+        private void Start() {
+            _inputReader.EnableGameplayInput();
         }
 
         public void LoadLevelData(LevelDataSO levelData) {
@@ -69,7 +71,7 @@ namespace HarvestCode.Systems {
                         }
                         gridObject.ClearLand();
                         gridObject.SetLand(land);
-                        yield return new WaitForSeconds(0.2f);
+                        yield return new WaitForSeconds(0.1f);
                     }
                 }
             }
@@ -93,11 +95,8 @@ namespace HarvestCode.Systems {
             Vector3 position = Utils.GetMousePosition3D();
 
             var gridObject = grid.GetGridObject(position);
-
-            Debug.Log("Ahoj" + gridObject.GetX() + ", " + gridObject.GetZ());
             
-
-            Debug.Log("Ahoj after");
+            if(gridObject == null) return;
 
             AddNextMoveEvent.Raise(gridObject);
         }

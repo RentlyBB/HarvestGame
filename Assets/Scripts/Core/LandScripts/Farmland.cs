@@ -6,9 +6,6 @@ namespace HarvestCode.Core {
 
         protected Transform plantedCrop;
 
-        [Header("Broadcasting On")]
-        [SerializeField] private TransformEventChannelSO OnBadHarvest;
-
         private void Start() {
             OnStart();
         }
@@ -41,7 +38,7 @@ namespace HarvestCode.Core {
             if(plantedCrop.GetComponent<Plantable>().CanBeHarvest()) {
 
             } else {
-                OnBadHarvest.RaiseEvent(transform);
+                //Bad Harvest
             }
 
             Destroy(plantedCrop.gameObject);

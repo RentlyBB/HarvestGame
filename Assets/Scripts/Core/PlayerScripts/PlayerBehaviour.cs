@@ -4,11 +4,16 @@ using UnityEngine;
 
 namespace HarvestCode.Core {
     [RequireComponent(typeof(Harvester), typeof(Planter), typeof(Waterer))]
+    [RequireComponent(typeof(GridMovement))]
     public class PlayerBehaviour : MonoBehaviour {
+
+        [SerializeField] private InputReaderSO _inputReader;
 
         private Planter planter = default;
         private Harvester harvester = default;
         private Waterer waterer = default;
+
+        private Vector3 startingPositon = Vector3.zero;
 
         void Awake() {
             planter = GetComponent<Planter>();
@@ -16,7 +21,17 @@ namespace HarvestCode.Core {
             waterer = GetComponent<Waterer>();
         }
 
+        private void OnEnable() {
+            _inputReader.GameResetEvent += ResetPlayer;
+        }
+
+        private void OnDisable() {
+            _inputReader.GameResetEvent -= ResetPlayer;
+        }
+
         public void InteractWithTile(GridObject gridObject) {
+
+            if(gridObject == null) return;
 
             //Try plant or harvest
             FarmlandRoutine(gridObject);
@@ -56,8 +71,13 @@ namespace HarvestCode.Core {
 
         }
 
-        public void Test() {
-            Debug.Log("Ahoj Toto Je RNT EVENT");
+        public void InitPlayerData(LevelDataSO levevData) {
+            startingPositon = levevData.playerStartPoint;
+        }
+
+        public void ResetPlayer() {
+            transform.position = startingPositon;
+            planter.ResetPlanter();
         }
     }
 }

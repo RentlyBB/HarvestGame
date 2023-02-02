@@ -105,7 +105,7 @@ namespace HarvestCode.LevelEditor {
         }
 
         public void RemoveSeed() {
-            if(editingLevel.cropSeeds_list.Count > 0) {
+            if(editingLevel.seeds_list.Count > 0) {
                 editingLevel.RemoveCropSeedFromList();
             }
         }

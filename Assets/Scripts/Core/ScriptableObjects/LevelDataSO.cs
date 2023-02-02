@@ -15,10 +15,10 @@ public class LevelDataSO : ScriptableObject {
     
     //Persistant data of crop seeds 
     [Header("Persistant data - this should not be change in gameplay")]
-    [SerializeField] private List<Transform> seeds_list = new List<Transform>();
+    [SerializeField] public List<Transform> seeds_list = new List<Transform>();
 
     //Data of crop seeds used in game 
-    [HideInInspector] public List<Transform> cropSeeds_list = new List<Transform>();
+    // public List<Transform> cropSeeds_list = new List<Transform>();
 
     public void InitEmptyLevel() {
 
@@ -88,7 +88,7 @@ public class LevelDataSO : ScriptableObject {
     }
 
     public void Reset() {
-        cropSeeds_list = new List<Transform>(seeds_list);
+        //cropSeeds_list = new List<Transform>(seeds_list);
     }
 }
 
