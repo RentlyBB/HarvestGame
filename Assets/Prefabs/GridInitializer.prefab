@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735488396342163330}
   - component: {fileID: 1735488396342163333}
+  - component: {fileID: 1757325748}
   m_Layer: 0
   m_Name: GridInitializer
   m_TagString: Grid
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1735488396342163333
 MonoBehaviour:
@@ -46,6 +47,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   _inputReader: {fileID: 11400000, guid: fb20446b4c19dbb4592cef5846cdbf10, type: 2}
-  OnGridInitEvent: {fileID: 11400000, guid: d787575f57ff47642b05ae0eaef8fb58, type: 2}
-  AddNextMoveEvent: {fileID: 11400000, guid: 4efe7a04f66141544a8031beaac1489a, type: 2}
-  LoadLevelEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}
+  GridInitEvent: {fileID: 11400000, guid: 3b634bf190181d74397286e016fe8c12, type: 2}
+  AddNextMoveEvent: {fileID: 11400000, guid: c23b56e7e7c4c754bacb6ec72d92a78e, type: 2}
+--- !u!114 &1757325748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735488396342163331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bcda1edb52a98428adffb2cd51a4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 1
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 9ebab87ac58f80b46bfa230c566c3af4, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1735488396342163333}
+        m_TargetAssemblyTypeName: HarvestCode.Systems.GridInitializer, Assembly-CSharp
+        m_MethodName: LoadLevelData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: {fileID: 0}

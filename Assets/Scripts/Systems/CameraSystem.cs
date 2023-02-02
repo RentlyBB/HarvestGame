@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HarvestCode.Systems {
@@ -9,6 +7,7 @@ namespace HarvestCode.Systems {
 
         [SerializeField] private GridInitializer gridInitializator;
 
+        [Space]
         public Vector3 bottomTarget;
         public Vector3 topTarget;
 
@@ -18,11 +17,6 @@ namespace HarvestCode.Systems {
             if(grid != null) {
                 gridInitializator = grid.GetComponent<GridInitializer>();
             }
-        }
-
-
-        private void Update() {
-
         }
 
         public void UpdateCameraPosition() {
@@ -50,7 +44,6 @@ namespace HarvestCode.Systems {
             }
 
         }
-
 
         private bool IsVisible(Camera cam, Transform targetPos, float offset = 0) {
 

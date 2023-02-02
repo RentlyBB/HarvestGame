@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using RnT.ScriptableObjectArchitecture;
 
 [CreateAssetMenu(menuName = "Events/Transform Event Channel")]
 public class TransformEventChannelSO : DescriptionBaseSO {

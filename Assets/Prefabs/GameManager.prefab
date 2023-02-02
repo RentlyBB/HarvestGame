@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152996119303849277}
   - component: {fileID: 1152996119303849276}
+  - component: {fileID: 1259786532}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,9 +46,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelData: {fileID: 11400000, guid: 13b6be74dd1cdd04ca66ddd60c3b5d90, type: 2}
-  GameStartEvent: {fileID: 11400000, guid: 5cace04b04aeb324fb00aca70bb296a2, type: 2}
-  GrowthEvent: {fileID: 11400000, guid: e35d96b065d95c740bf57961c3153fce, type: 2}
-  SeedQueueUpdateEvent: {fileID: 11400000, guid: 276b459ed0159314fafe56dc2a5759ae,
+  LoadLevelEvent: {fileID: 11400000, guid: 9ebab87ac58f80b46bfa230c566c3af4, type: 2}
+  GrowthEvent: {fileID: 11400000, guid: f1db2f9925e09d2499447de235baaf76, type: 2}
+  GameStartEvent: {fileID: 11400000, guid: e0d4e69287de87a48906890e7e3b5ab7, type: 2}
+  SeedQueueUpdateEvent: {fileID: 11400000, guid: 4b0d740f386a239408d629f5b986f94e,
     type: 2}
-  LoadLevelEvent: {fileID: 11400000, guid: 569a01ead3796a5439076f196cbb7cbb, type: 2}
-  OnMovementEndEvent: {fileID: 11400000, guid: ef64071a7c3e01e4fb59e6d613ff561e, type: 2}
+--- !u!114 &1259786532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152996119303849279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 1
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: e6aecab92b8124f4984fdf6ea442f5f3,
+    type: 2}
+  _event: {fileID: 11400000, guid: e6aecab92b8124f4984fdf6ea442f5f3, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152996119303849276}
+        m_TargetAssemblyTypeName: HarvestCode.Systems.GameManager, Assembly-CSharp
+        m_MethodName: OnMovementEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

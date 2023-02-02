@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using RnT.Utils;
-using HarvestCode.Core;
 using ScriptableObjectArchitecture;
-
+using System.Collections;
+using HarvestCode.Core;
+using RnT.Utilities;
+using UnityEngine;
 
 namespace HarvestCode.Systems {
     public class GridInitializer : MonoBehaviour {
@@ -16,12 +14,8 @@ namespace HarvestCode.Systems {
         [Space, SerializeField] private InputReaderSO _inputReader = default;
 
         [Header("Broadcasting Events")]
-        [SerializeField] private GameEvent OnGridInitEvent = default;
-
-        [SerializeField] private GridObjectEventChannelSO AddNextMoveEvent = default;
-
-        [Header("Listen to")]
-        [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
+        [SerializeField] private GameEvent GridInitEvent = default(GameEvent);
+        [SerializeField] private GridObjectGameEvent AddNextMoveEvent = default;
 
         private LevelDataSO levelData = default;
 
@@ -33,16 +27,14 @@ namespace HarvestCode.Systems {
         private void OnEnable() {
             _inputReader.GameClickButton += MouseClickOnGrid;
             _inputReader.GameResetEvent += ResetLevel;
-            LoadLevelEvent.OnEventRaised += LoadLevelData;
         }
 
         private void OnDisable() {
             _inputReader.GameClickButton -= MouseClickOnGrid;
             _inputReader.GameResetEvent -= ResetLevel;
-            LoadLevelEvent.OnEventRaised -= LoadLevelData;
         }
 
-        private void LoadLevelData(LevelDataSO levelData) {
+        public void LoadLevelData(LevelDataSO levelData) {
             this.levelData = levelData;
             InitGrid();
         }
@@ -53,7 +45,7 @@ namespace HarvestCode.Systems {
 
             StartCoroutine(SpawningGridObjects());
 
-            OnGridInitEvent.Raise();
+            GridInitEvent.Raise();
         }
 
         private IEnumerator SpawningGridObjects() {
@@ -97,15 +89,17 @@ namespace HarvestCode.Systems {
             InitGrid();
         }
 
-
         private void MouseClickOnGrid() {
             Vector3 position = Utils.GetMousePosition3D();
 
             var gridObject = grid.GetGridObject(position);
 
-            if(gridObject == null) return;
+            Debug.Log("Ahoj" + gridObject.GetX() + ", " + gridObject.GetZ());
+            
 
-            AddNextMoveEvent.RaiseEvent(gridObject);
+            Debug.Log("Ahoj after");
+
+            AddNextMoveEvent.Raise(gridObject);
         }
     }
 }

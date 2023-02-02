@@ -14,9 +14,6 @@ namespace HarvestCode.Core {
 
         [SerializeField] protected int tickToGrowth = 1;
 
-        [Header("Events Listeners")]
-        [SerializeField] private VoidEventChannelSO OnGrowthEvent;
-
         protected Transform currentCropPrefab;
 
         protected int currentGrowthTick = 1;
@@ -26,7 +23,6 @@ namespace HarvestCode.Core {
         }
 
         protected virtual void BaseOnEnable() {
-            OnGrowthEvent.OnEventRaised += GrowthUp;
         }
 
         private void OnDisable() {
@@ -35,7 +31,6 @@ namespace HarvestCode.Core {
 
 
         protected virtual void BaseOnDisable() {
-            OnGrowthEvent.OnEventRaised -= GrowthUp;
         }
 
 

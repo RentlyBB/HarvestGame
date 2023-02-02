@@ -55,5 +55,9 @@ namespace HarvestCode.Core {
             }
 
         }
+
+        public void Test() {
+            Debug.Log("Ahoj Toto Je RNT EVENT");
+        }
     }
 }

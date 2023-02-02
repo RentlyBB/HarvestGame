@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ScriptableObjectArchitecture;
 
 namespace HarvestCode.Systems {
     public class GameManager : MonoBehaviour {
@@ -9,34 +10,19 @@ namespace HarvestCode.Systems {
         [SerializeField] public LevelDataSO levelData = default;
 
         [Header("Broadcasting Events")]
-        [SerializeField] private VoidEventChannelSO GameStartEvent = default;
-        [SerializeField] private VoidEventChannelSO GrowthEvent = default;
-        [SerializeField] private VoidEventChannelSO SeedQueueUpdateEvent = default;
+        [SerializeField] private LevelDataSOGameEvent LoadLevelEvent = default(LevelDataSOGameEvent);
+        [SerializeField] private GameEvent GrowthEvent = default(GameEvent);
+        [SerializeField] private GameEvent GameStartEvent = default(GameEvent);
+        [SerializeField] private GameEvent SeedQueueUpdateEvent = default(GameEvent);
 
-
-        [SerializeField] private LevelDataEventChannelSO LoadLevelEvent = default;
-
-        [Header("Listen to")]
-        [SerializeField] private VoidEventChannelSO OnMovementEndEvent = default;
-
-
-        private void OnEnable() {
-            OnMovementEndEvent.OnEventRaised += OnMovementEnd;
-        }
-
-        private void OnDisable() {
-            OnMovementEndEvent.OnEventRaised -= OnMovementEnd;
-        }
 
         private void Start() {
-            GameStartEvent.RaiseEvent();
+            GameStartEvent.Raise();
             LoadLevel();
         }
 
-
-
-        private void OnMovementEnd() {
-            GrowthEvent.RaiseEvent();
+        public void OnMovementEnd() {
+            GrowthEvent.Raise();
         }
 
         private void LoadLevel() {
@@ -45,8 +31,9 @@ namespace HarvestCode.Systems {
                 // Reset non persistant data
                 levelData.Reset();
 
-                LoadLevelEvent.RaiseEvent(levelData);
-                SeedQueueUpdateEvent.RaiseEvent();
+                LoadLevelEvent.Raise(levelData);
+
+                SeedQueueUpdateEvent.Raise();
 
             } else {
                 Debug.LogError("There is no level to load. Make sure you set levelData variable in GameManager.");
