@@ -6,10 +6,10 @@ namespace HarvestCode.Core {
 
         [SerializeField] private bool canWater = false;
 
-        public bool WaterCropOnFarmland(Farmland farmland) {
+        public bool WaterFarmland(Farmland farmland) {
             if(!canWater) return false;
 
-            if(farmland.WaterCrop()) {
+            if(farmland.WaterFarmland()) {
                 canWater = false;
                 return true;
             }

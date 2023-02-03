@@ -77,7 +77,7 @@ namespace HarvestCode.LevelEditor {
                         editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
                     } else {
                         //Visualization
-                        var plantable = farmland.GetCrop().GetComponent<Plantable>();
+                        var plantable = farmland.GetCrop();
                         plantable.GrowthUp();
 
                         //Update level data file

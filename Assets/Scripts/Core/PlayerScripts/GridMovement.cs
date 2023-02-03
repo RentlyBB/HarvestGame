@@ -5,8 +5,6 @@ using ScriptableObjectArchitecture;
 namespace HarvestCode.Core {
     public class GridMovement : MonoBehaviour {
 
-        [SerializeField] private InputReaderSO _inputReader;
-
         [SerializeField] private float movementSpeed;
         [SerializeField] private bool allowDiagonalMovement = true;
 
@@ -21,18 +19,18 @@ namespace HarvestCode.Core {
 
         private PlayerBehaviour interactor;
 
-        private void OnEnable() {
-            _inputReader.GameResetEvent += ResetMovement;
-        }
-
-        private void OnDisable() {
-            _inputReader.GameResetEvent -= ResetMovement;
-        }
-
-        private void Start() {
+        private void Awake() {
             interactor = GetComponent<PlayerBehaviour>();
         }
 
+        private void OnEnable() {
+            interactor._inputReader.GameResetEvent += ResetMovement;
+        }
+
+        private void OnDisable() {
+            interactor._inputReader.GameResetEvent -= ResetMovement;
+        }
+     
         private void Update() {
             MovePlayer();
         }

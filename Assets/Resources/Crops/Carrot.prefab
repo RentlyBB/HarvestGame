@@ -50,8 +50,8 @@ MonoBehaviour:
   cropData: {fileID: 11400000, guid: c42f4e53d2485434b9c0e395cbd33a7d, type: 2}
   currentPhase: 0
   state: 0
-  tickToGrowth: 2
-  OnGrowthEvent: {fileID: 11400000, guid: e35d96b065d95c740bf57961c3153fce, type: 2}
+  tickToGrowth: 0
+  currentGrowthTick: 0
 --- !u!114 &4133527573150182249
 MonoBehaviour:
   m_ObjectHideFlags: 0

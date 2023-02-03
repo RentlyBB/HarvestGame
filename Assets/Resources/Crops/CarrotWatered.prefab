@@ -50,7 +50,7 @@ MonoBehaviour:
   cropData: {fileID: 11400000, guid: d284dfe1c3547fe41b5cd730698e7020, type: 2}
   currentPhase: 0
   state: 0
-  tickToGrowth: 2
+  tickToGrowth: 1
   isWatered: 0
 --- !u!114 &8459880402937693939
 MonoBehaviour:

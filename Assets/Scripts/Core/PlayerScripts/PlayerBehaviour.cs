@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HarvestCode.Core {
@@ -7,7 +5,7 @@ namespace HarvestCode.Core {
     [RequireComponent(typeof(GridMovement))]
     public class PlayerBehaviour : MonoBehaviour {
 
-        [SerializeField] private InputReaderSO _inputReader;
+        [SerializeField] public InputReaderSO _inputReader;
 
         private Planter planter = default;
         private Harvester harvester = default;
@@ -36,7 +34,6 @@ namespace HarvestCode.Core {
             //Try plant or harvest
             FarmlandRoutine(gridObject);
             ResourceTileRoutine(gridObject);
-
         }
 
         private void FarmlandRoutine(GridObject gridObject) {
@@ -47,12 +44,9 @@ namespace HarvestCode.Core {
             if(farmland == null) return;
 
             // Player successfully planted the crop, no other action needed.
-            if(planter.PlantCropOnFarmland(farmland)) return;
-
-            if(waterer.WaterCropOnFarmland(farmland)) return;
-
+            //if(planter.PlantCropOnFarmland(farmland)) return;
+            if(waterer.WaterFarmland(farmland)) return;
             harvester.HarvestFarmland(farmland);
-
         }
 
         private void ResourceTileRoutine(GridObject gridObject) {
@@ -68,7 +62,6 @@ namespace HarvestCode.Core {
                 default:
                     break;
             }
-
         }
 
         public void InitPlayerData(LevelDataSO levevData) {

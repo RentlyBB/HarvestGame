@@ -16,32 +16,13 @@ namespace HarvestCode.Core {
 
         protected Transform currentCropPrefab;
 
-        protected int currentGrowthTick = 1;
-
-        private void OnEnable() {
-            BaseOnEnable();
-        }
-
-        protected virtual void BaseOnEnable() {
-        }
-
-        private void OnDisable() {
-            BaseOnDisable();
-        }
-
-
-        protected virtual void BaseOnDisable() {
-        }
+        [SerializeField] protected int currentGrowthTick = 0;
 
 
         private void Start() {
-            OnStart();
-        }
-
-        protected virtual void OnStart() {
-
             UpdateState();
         }
+
 
         public virtual void CreateCrop() {
             currentCropPrefab = Instantiate(cropData.GetPrefab(currentPhase), transform.position, Quaternion.identity);
@@ -55,7 +36,7 @@ namespace HarvestCode.Core {
                 Destroy(currentCropPrefab.gameObject);
                 CreateCrop();
                 UpdateState();
-                currentGrowthTick = 1;
+                currentGrowthTick = 0;
             }
         }
 
@@ -85,16 +66,8 @@ namespace HarvestCode.Core {
         private void UpdateState() {
             if(currentPhase >= cropData.GetOvergrownPrefabID()) {
                 state = CropState.Rotten;
-                var walkable = GetComponentInParent<Walkable>();
-
-                if(walkable != null) walkable.SetWalkable(true);
-
             } else if(currentPhase == cropData.GetHarvestablePrefabID()) {
                 state = CropState.Harvestable;
-                var walkable = GetComponentInParent<Walkable>();
-
-                if(walkable != null) walkable.SetWalkable(true);
-
             } else {
                 state = CropState.Not_Harvestable;
             }

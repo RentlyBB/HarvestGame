@@ -310,8 +310,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5750639461255673279}
-  - component: {fileID: 6565161567167934120}
   - component: {fileID: 4010220755246152565}
+  - component: {fileID: 6565161567167934120}
   m_Layer: 0
   m_Name: RockLand
   m_TagString: Untagged
@@ -335,19 +335,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6565161567167934120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5750639461255673267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bb1f9ff260e554a96a377eb082e13d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 6295748503693286374}
 --- !u!114 &4010220755246152565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +348,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 0
+--- !u!114 &6565161567167934120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5750639461255673267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bb1f9ff260e554a96a377eb082e13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6295748503693286374}
 --- !u!1 &7351473387977851464
 GameObject:
   m_ObjectHideFlags: 0

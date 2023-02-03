@@ -62,5 +62,4 @@ MonoBehaviour:
     land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
     startPhase: 0
   seeds_list:
-  - {fileID: 976829842673617474, guid: b5c7a8a99d9a50842b10e81476236459, type: 3}
-  cropSeeds_list: []
+  - {fileID: 7010502221597172983, guid: 6be7f7b923f23f6498f6af223845e697, type: 3}
