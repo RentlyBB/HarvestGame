@@ -19,7 +19,7 @@ namespace HarvestCode.UI {
             foreach(Transform crop in cropSeeds_list) {
                 var tempIcon = Instantiate(iconPrefab);
                 tempIcon.SetParent(transform);
-                tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
+               // tempIcon.GetComponent<Image>().sprite = crop.GetComponent<Plantable>().cropData.sprite;
             }
 
         }

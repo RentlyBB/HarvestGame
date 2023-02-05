@@ -21,7 +21,7 @@ namespace HarvestCode.LevelEditor {
         [SerializeField] public LevelDataSO editingLevel;
 
         public LandSO selectedLand;
-        public Transform selectedCrop;
+        public CropDataSO selectedCrop;
 
         public GridXZ<GridObject> grid;
 
@@ -71,10 +71,10 @@ namespace HarvestCode.LevelEditor {
 
                     if(farmland.GetCrop() == null) {
                         //Visualization
-                        farmland.PlantCrop(selectedCrop);
+                        farmland.PlantCrop(selectedCrop.GetPrefab().transform);
 
                         //Update level data file
-                        editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
+                        editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop.GetPrefab().transform);
                     } else {
                         //Visualization
                         var plantable = farmland.GetCrop();
@@ -100,8 +100,11 @@ namespace HarvestCode.LevelEditor {
         }
 
         public void AddSeed() {
+            Debug.LogWarning("This is not implemented, cuz of crop seed reworked.");
             if(selectedCrop == null) return;
-            editingLevel.AddCropSeedToList(selectedCrop);
+
+            
+           // editingLevel.AddCropSeedToList(selectedCrop);
         }
 
         public void RemoveSeed() {

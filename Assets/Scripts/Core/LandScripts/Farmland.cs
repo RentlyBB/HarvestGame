@@ -30,10 +30,10 @@ namespace HarvestCode.Core {
             tempCropGameObject.position = new Vector3(tempCropGameObject.position.x, 0.05f, tempCropGameObject.position.z);
             tempCropGameObject.SetParent(transform);
 
-            var plantedCrop = this.plantedCrop.GetComponent<Plantable>();
+            plantedCrop = tempCropGameObject.GetComponent<Plantable>();
 
             plantedCrop.SetCurrentPhase(cropStartPhaseID);
-            plantedCrop.CreateCrop();
+            plantedCrop.UpdateCrop();
 
             return true;
         }
