@@ -3,7 +3,6 @@ using RnT.ScriptableObjectArchitecture;
 
 namespace HarvestCode.Core {
     [CreateAssetMenu(menuName = "Gameplay/CropDataSO")]
-
     public class CropDataSO : DescriptionBaseSO {
 
         [Header("Gameplay")]

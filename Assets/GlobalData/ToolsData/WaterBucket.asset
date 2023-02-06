@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256c3ae17d8ad624bb4a0a32123e5945, type: 3}
+  m_Name: WaterBucket
+  m_EditorClassIdentifier: 
+  _guid: 1d0d282e15d97c14c93c82f74e3d64aa
+  description: Water bucket is needed to water the farmland. Without watering the
+    farmland, crops cannot growth up.
+  numberOfPours: 2

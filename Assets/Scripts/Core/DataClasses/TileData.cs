@@ -8,7 +8,7 @@ namespace HarvestCode.Core {
         [SerializeField] private int x;
         [SerializeField] private int z;
         [SerializeField] private Transform crop;
-        [SerializeField] private LandSO land;
+        [SerializeField] private LandDataSO land;
         [SerializeField] private int startPhase;
 
         public TileData(int x, int z) {
@@ -32,11 +32,11 @@ namespace HarvestCode.Core {
             return crop;
         }
 
-        public void SetLand(LandSO land) {
+        public void SetLand(LandDataSO land) {
             this.land = land;
         }
 
-        public LandSO GetLand() {
+        public LandDataSO GetLand() {
             return land;
         }
 

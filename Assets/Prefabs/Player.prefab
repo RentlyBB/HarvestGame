@@ -14,9 +14,6 @@ GameObject:
   - component: {fileID: 1484417440351426085}
   - component: {fileID: 1484417440351426093}
   - component: {fileID: 1860347920}
-  - component: {fileID: 1484417440351426082}
-  - component: {fileID: 1484417440351426083}
-  - component: {fileID: 1484417440351426092}
   - component: {fileID: 6624146321625777368}
   - component: {fileID: 1761034703}
   m_Layer: 0
@@ -133,46 +130,6 @@ MonoBehaviour:
   movementSpeed: 4
   allowDiagonalMovement: 1
   OnMovementEndEvent: {fileID: 11400000, guid: e6aecab92b8124f4984fdf6ea442f5f3, type: 2}
---- !u!114 &1484417440351426082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484417440351426106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b25b94829bb92044a703a5920270850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1484417440351426083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484417440351426106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd15470d123f2894e85b8e3fcfd291f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SeedQueueUpdateEvent: {fileID: 11400000, guid: 4b0d740f386a239408d629f5b986f94e,
-    type: 2}
-  seeds_list: []
---- !u!114 &1484417440351426092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484417440351426106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a0490da5f898d48ab448997ef05a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canWater: 0
 --- !u!114 &6624146321625777368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,18 +182,6 @@ MonoBehaviour:
   _response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1484417440351426083}
-        m_TargetAssemblyTypeName: HarvestCode.Core.Planter, HarvestCode.Core
-        m_MethodName: InitCropSeeds
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1484417440351426093}
         m_TargetAssemblyTypeName: HarvestCode.Core.PlayerBehaviour, HarvestCode.Core
         m_MethodName: InitPlayerData

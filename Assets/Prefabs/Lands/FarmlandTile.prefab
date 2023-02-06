@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a04be656b2a8424f96780faaea2373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ddeeaecb5ee56014b861c8ca11079568, type: 2}
   dryFarmland: {fileID: 8488310032173839099}
   wateredFarmland: {fileID: 6813191816843147316}
   currentState: 1

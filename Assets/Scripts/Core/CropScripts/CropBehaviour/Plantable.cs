@@ -54,6 +54,8 @@ namespace HarvestCode.Core {
                 return false;
             }
 
+            if(currentPhase == rottenPhase) return false;
+
             if(currentGrowthTick < tickToGrowth) {
                 currentGrowthTick++;
                 return false;

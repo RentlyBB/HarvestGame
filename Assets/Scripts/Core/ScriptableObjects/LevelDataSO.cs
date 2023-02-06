@@ -31,7 +31,7 @@ public class LevelDataSO : ScriptableObject {
         }
     }
 
-    public void SetLandToLevel(int x, int z, LandSO land) {
+    public void SetLandToLevel(int x, int z, LandDataSO land) {
         if(tileData_list.Count == 0) {
             InitEmptyLevel();
         } 

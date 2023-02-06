@@ -8,58 +8,40 @@ enum FarmlandState {
 }
 
 namespace HarvestCode.Core {
-    public class Farmland : MonoBehaviour {
+    public class Farmland : MonoBehaviour, IInteractableTile {
 
-        private Plantable plantedCrop;
+        [SerializeField] private PlayerDataSO playerData;
 
         [SerializeField] private GameObject dryFarmland;
         [SerializeField] private GameObject wateredFarmland;
 
         [SerializeField] private FarmlandState currentState = FarmlandState.Dry;
 
+        private Plantable plantedCrop;
+
         private void Start() {
             SetFarmlandState(currentState);
         }
 
-        public bool PlantCrop(Transform crop, int cropStartPhaseID = 0) {
-            if(!CanPlantCrop()) {
-                return false;
+        public void Interact() {
+            WaterFarmland();
+            if(PlantCrop()) return;
+            if(HarvestCrop()) return;
+
+        }
+
+        public void WaterFarmland() {
+            // Is already watered
+            if(currentState == FarmlandState.Watered) return;
+
+            // Use WaterBucketTool
+            if(playerData.GetActiveTool().UseTool()) {
+                // Update visual of the farmland
+                SetFarmlandState(FarmlandState.Watered);
             }
-
-            var tempCropGameObject = Instantiate(crop, transform.position, Quaternion.identity);
-            tempCropGameObject.position = new Vector3(tempCropGameObject.position.x, 0.05f, tempCropGameObject.position.z);
-            tempCropGameObject.SetParent(transform);
-
-            plantedCrop = tempCropGameObject.GetComponent<Plantable>();
-
-            plantedCrop.SetCurrentPhase(cropStartPhaseID);
-            plantedCrop.UpdateCrop();
-
-            return true;
         }
 
-        public void HarvestCrop() {
-            //If there is no crop, cancel it
-            if(CanPlantCrop()) return;
-
-            //FIXME: can be Not-Harvestable
-            if(plantedCrop.CanBeHarvest()) {
-                //Good harvest
-            } else {
-                //Bad Harvest
-            }
-
-            SetFarmlandState(FarmlandState.Dry);
-            DestroyCrop();
-        }
-
-        public bool WaterFarmland() {
-            if(currentState == FarmlandState.Watered) return false;
-
-            SetFarmlandState(FarmlandState.Watered);
-            return true;
-        }
-
+        // Update visual of the farmland.
         private void SetFarmlandState(FarmlandState state) {
             currentState = state;
 
@@ -78,18 +60,84 @@ namespace HarvestCode.Core {
             }
         }
 
+        public bool PlantCrop() {
+            
+            //Crop is already planted on this farmland
+            if(!CanPlantCrop()) return false;
+
+           
+            var cropToPlant = playerData.GetLastCropSeed();
+            // Player has no seeds, cancel it
+            if(cropToPlant == null) return false;
+
+            var tempCropGameObject = Instantiate(cropToPlant.GetPrefab().transform, transform.position, Quaternion.identity);
+            tempCropGameObject.position = new Vector3(tempCropGameObject.position.x, 0.05f, tempCropGameObject.position.z);
+            tempCropGameObject.SetParent(transform);
+
+            plantedCrop = tempCropGameObject.GetComponent<Plantable>();
+
+            plantedCrop.SetCurrentPhase(0);
+            plantedCrop.UpdateCrop();
+
+            return true;
+        }
+
+        public bool HarvestCrop() {
+            //If there is no crop, cancel it
+            if(CanPlantCrop()) return false;
+
+            //FIXME: can be Not-Harvestable
+            if(plantedCrop.CanBeHarvest()) {
+                //Good harvest
+            } else {
+                //Bad Harvest
+            }
+
+            SetFarmlandState(FarmlandState.Dry);
+            DestroyCrop();
+
+            return true;
+        }
+
         public void DestroyCrop() {
             Destroy(plantedCrop.gameObject);
             plantedCrop = null;
         }
 
-        public virtual Plantable GetCrop() {
+        public Plantable GetCrop() {
             return plantedCrop;
         }
 
-        public virtual bool CanPlantCrop() {
+        public bool CanPlantCrop() {
             return plantedCrop == null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="crop">Crop to be created.</param>
+        /// <param name="cropStartPhaseID">Crops start growth phase.</param>
+        /// <returns></returns>
+        public bool PlantCrop(Transform crop, int cropStartPhaseID = 0) {
+            if(!CanPlantCrop()) {
+                return false;
+            }
+
+            var tempCropGameObject = Instantiate(crop, transform.position, Quaternion.identity);
+            tempCropGameObject.position = new Vector3(tempCropGameObject.position.x, 0.05f, tempCropGameObject.position.z);
+            tempCropGameObject.SetParent(transform);
+
+            plantedCrop = tempCropGameObject.GetComponent<Plantable>();
+
+            plantedCrop.SetCurrentPhase(cropStartPhaseID);
+            plantedCrop.UpdateCrop();
+
+            return true;
+        }
+
+
+
+
     }
 }
 

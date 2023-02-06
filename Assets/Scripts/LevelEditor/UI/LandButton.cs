@@ -6,7 +6,7 @@ using TMPro;
 namespace HarvestCode.LevelEditor {
     public class LandButton : MonoBehaviour {
 
-        public LandSO landToSelect;
+        public LandDataSO landToSelect;
 
         private TextMeshProUGUI text;
 
@@ -16,7 +16,7 @@ namespace HarvestCode.LevelEditor {
             }
         }
 
-        public void SetLandToSelect(LandSO land) {
+        public void SetLandToSelect(LandDataSO land) {
             landToSelect = land;
             UpdateBtnText();
         }

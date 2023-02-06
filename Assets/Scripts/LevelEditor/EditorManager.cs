@@ -20,7 +20,7 @@ namespace HarvestCode.LevelEditor {
 
         [SerializeField] public LevelDataSO editingLevel;
 
-        public LandSO selectedLand;
+        public LandDataSO selectedLand;
         public CropDataSO selectedCrop;
 
         public GridXZ<GridObject> grid;

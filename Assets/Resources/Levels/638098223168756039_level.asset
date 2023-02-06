@@ -49,7 +49,7 @@ MonoBehaviour:
   - x: 2
     z: 0
     crop: {fileID: 0}
-    land: {fileID: 11400000, guid: 8758a16df8c074f43a0ab50d3d28937c, type: 2}
+    land: {fileID: 11400000, guid: bc6fe4fc38b306f459df86ccb8862338, type: 2}
     startPhase: 0
   - x: 2
     z: 1
