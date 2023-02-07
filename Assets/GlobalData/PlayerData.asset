@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _guid: ddeeaecb5ee56014b861c8ca11079568
-  description: 
-  activeTool: {fileID: 11400000, guid: 1d0d282e15d97c14c93c82f74e3d64aa, type: 2}
+  description: General player data that can be accessed from anywhere.
+  activeTool: {fileID: 11400000, guid: a698a7e0e468cfe479c3a46b6b6b8019, type: 2}
   seeds_list: []

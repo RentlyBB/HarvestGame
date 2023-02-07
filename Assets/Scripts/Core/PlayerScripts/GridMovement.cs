@@ -15,7 +15,7 @@ namespace HarvestCode.Core {
         private List<GridObject> nextMoves = new List<GridObject>();
 
         // Last grid object where player was on
-        private GridObject lastPosition = null;
+        private GridObject lastPosition = new GridObject();
 
         private PlayerBehaviour interactor;
 
@@ -44,7 +44,7 @@ namespace HarvestCode.Core {
                 return;
             }
 
-            if(lastPosition == null) {
+            if(lastPosition.GetGrid() == null) {
                 nextMoves.Add(gridObject);
                 return;
             }
@@ -118,7 +118,7 @@ namespace HarvestCode.Core {
         }
 
         private void ResetMovement() {
-            lastPosition = null;
+            lastPosition = new GridObject();
             nextMoves = new List<GridObject>();
         }
     }

@@ -24,21 +24,15 @@ namespace HarvestCode.Core {
         }
 
         public void Interact() {
-            WaterFarmland();
             if(PlantCrop()) return;
-            if(HarvestCrop()) return;
-
         }
 
-        public void WaterFarmland() {
+        public bool WaterFarmland() {
             // Is already watered
-            if(currentState == FarmlandState.Watered) return;
+            if(currentState == FarmlandState.Watered) return false;
 
-            // Use WaterBucketTool
-            if(playerData.GetActiveTool().UseTool()) {
-                // Update visual of the farmland
-                SetFarmlandState(FarmlandState.Watered);
-            }
+            SetFarmlandState(FarmlandState.Watered);
+            return true;
         }
 
         // Update visual of the farmland.

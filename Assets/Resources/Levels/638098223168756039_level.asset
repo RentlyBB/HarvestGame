@@ -19,12 +19,12 @@ MonoBehaviour:
   - x: 0
     z: 0
     crop: {fileID: 0}
-    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    land: {fileID: 11400000, guid: 543780b2e08b36d4d8262244495d4d0c, type: 2}
     startPhase: 0
   - x: 0
     z: 1
     crop: {fileID: 0}
-    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
+    land: {fileID: 11400000, guid: bc6fe4fc38b306f459df86ccb8862338, type: 2}
     startPhase: 0
   - x: 0
     z: 2
@@ -49,7 +49,7 @@ MonoBehaviour:
   - x: 2
     z: 0
     crop: {fileID: 0}
-    land: {fileID: 11400000, guid: bc6fe4fc38b306f459df86ccb8862338, type: 2}
+    land: {fileID: 11400000, guid: 581555d9ecfa048479faa23f76bf759d, type: 2}
     startPhase: 0
   - x: 2
     z: 1
