@@ -21,7 +21,10 @@ namespace HarvestCode.Core {
 
             if(gridObject.GetGrid() == null) return;
 
-            playerData.GetActiveTool().UseTool(gridObject);
+            var tool = playerData.GetActiveTool();
+            if(tool != null) {
+                tool.UseTool(gridObject);
+            }
 
             var interactable = gridObject.GetLand().GetComponent<IInteractableTile>();
             
@@ -32,13 +35,12 @@ namespace HarvestCode.Core {
 
         public void InitPlayerData(LevelDataSO levevData) {
             startingPositon = levevData.playerStartPoint;
+            ResetPlayer();
         }
 
         public void ResetPlayer() {
             transform.position = startingPositon;
-
-           // FIXME: Reset seedQueue 
-           // planter.ResetPlanter();
+            playerData.Reset();
         }
     }
 }

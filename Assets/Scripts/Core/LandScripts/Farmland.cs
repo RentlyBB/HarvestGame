@@ -1,11 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-enum FarmlandState { 
-    Watered,
-    Dry
-}
+using HarvestCode.Utilities;
 
 namespace HarvestCode.Core {
     public class Farmland : MonoBehaviour, IInteractableTile {
@@ -15,16 +11,21 @@ namespace HarvestCode.Core {
         [SerializeField] private GameObject dryFarmland;
         [SerializeField] private GameObject wateredFarmland;
 
-        [SerializeField] private FarmlandState currentState = FarmlandState.Dry;
+        [SerializeField] public FarmlandState currentState = FarmlandState.Dry;
 
         private Plantable plantedCrop;
+        private bool canPlant = true;
 
         private void Start() {
             SetFarmlandState(currentState);
         }
 
         public void Interact() {
-            if(PlantCrop()) return;
+            if(canPlant) {
+                PlantCrop();
+            } else {
+                canPlant = true;
+            }
         }
 
         public bool WaterFarmland() {
@@ -36,7 +37,7 @@ namespace HarvestCode.Core {
         }
 
         // Update visual of the farmland.
-        private void SetFarmlandState(FarmlandState state) {
+        public void SetFarmlandState(FarmlandState state) {
             currentState = state;
 
             switch(currentState) {
@@ -71,9 +72,16 @@ namespace HarvestCode.Core {
             plantedCrop = tempCropGameObject.GetComponent<Plantable>();
 
             plantedCrop.SetCurrentPhase(0);
-            plantedCrop.UpdateCrop();
+            plantedCrop.UpdateCropPhase();
+
 
             return true;
+        }
+
+        public void GrowthUpCrop() {
+            if(plantedCrop == null) return;
+            
+            plantedCrop.GrowthUp(currentState);
         }
 
         public bool HarvestCrop() {
@@ -89,7 +97,7 @@ namespace HarvestCode.Core {
 
             SetFarmlandState(FarmlandState.Dry);
             DestroyCrop();
-
+            canPlant = false;
             return true;
         }
 
@@ -124,7 +132,7 @@ namespace HarvestCode.Core {
             plantedCrop = tempCropGameObject.GetComponent<Plantable>();
 
             plantedCrop.SetCurrentPhase(cropStartPhaseID);
-            plantedCrop.UpdateCrop();
+            plantedCrop.UpdateCropPhase();
 
             return true;
         }

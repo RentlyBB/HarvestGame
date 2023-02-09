@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &1484417440351426087
 MeshFilter:
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: fb20446b4c19dbb4592cef5846cdbf10, type: 2}
+  playerData: {fileID: 11400000, guid: ddeeaecb5ee56014b861c8ca11079568, type: 2}
 --- !u!114 &1860347920
 MonoBehaviour:
   m_ObjectHideFlags: 0

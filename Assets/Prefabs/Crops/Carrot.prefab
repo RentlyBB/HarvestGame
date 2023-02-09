@@ -458,7 +458,6 @@ GameObject:
   - component: {fileID: 7510048778609028654}
   - component: {fileID: 7510048778609028655}
   - component: {fileID: -4978123742154823336}
-  - component: {fileID: -6456802958301872048}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -495,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropState: 0
-  tickToGrowth: 1
+  tickToGrowth: 0
   harvestablePhase: 3
   rottenPhase: 4
   currentPhase: 0
@@ -518,39 +517,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3620661551996162838}
---- !u!114 &-6456802958301872048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7510048778609028656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 11400000, guid: f1db2f9925e09d2499447de235baaf76,
-    type: 2}
-  _event: {fileID: 11400000, guid: f1db2f9925e09d2499447de235baaf76, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7510048778609028655}
-        m_TargetAssemblyTypeName: HarvestCode.Core.Plantable, HarvestCode.Core
-        m_MethodName: GrowthUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7510456148803941263
 GameObject:
   m_ObjectHideFlags: 0

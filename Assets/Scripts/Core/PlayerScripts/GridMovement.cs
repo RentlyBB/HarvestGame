@@ -76,9 +76,9 @@ namespace HarvestCode.Core {
             if(Vector3.Distance(transform.position, targetPosition) < 0.001f) {
                 lastPosition = nextMoves[0];
 
-                interactor.InteractWithTile(lastPosition);
-
                 OnMovementEndEvent.Raise();
+                
+                interactor.InteractWithTile(lastPosition);
 
                 nextMoves.RemoveAt(0);
             }

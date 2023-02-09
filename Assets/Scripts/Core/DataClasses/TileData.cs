@@ -5,11 +5,16 @@ namespace HarvestCode.Core {
     [System.Serializable]
     public class TileData {
 
+        [Header("Grid Coords")]
         [SerializeField] private int x;
         [SerializeField] private int z;
+
+        [Header("Crop Settings")]
         [SerializeField] private Transform crop;
-        [SerializeField] private LandDataSO land;
         [SerializeField] private int startPhase;
+
+        [Header("Land Settings")]
+        [SerializeField] private LandDataSO land;
 
         public TileData(int x, int z) {
             this.x = x;

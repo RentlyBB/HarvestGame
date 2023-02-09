@@ -11,8 +11,14 @@ namespace HarvestCode.Core {
         [SerializeField] private ToolBehaviour activeTool;
         [SerializeField] private List<CropDataSO> seeds_list;
 
+        private void OnEnable() {
+            Reset();
+        }
 
-    
+        private void OnDisable() {
+            Reset();
+        }
+
         public void SetActiveTool(ToolBehaviour tool) {
             activeTool = tool;
         }
@@ -34,6 +40,11 @@ namespace HarvestCode.Core {
 
         public void AddCropSeed(CropDataSO cropSeed) {
             seeds_list.Add(cropSeed);
+        }
+
+        public void Reset() { 
+            activeTool = null;
+            seeds_list = new List<CropDataSO>();
         }
     }
 }

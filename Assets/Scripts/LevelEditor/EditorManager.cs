@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using RnT.Utilities;
 using HarvestCode.Core;
+using HarvestCode.Utilities;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -44,17 +45,27 @@ namespace HarvestCode.LevelEditor {
         }
 
         private void PlaceLandOnGrid(GridObject gridObject) {
-            if(selectedLand != null) {
-                GameObject obj;
-                if(gridObject.CanCreateLand()) {
+            if(selectedLand == null) return;
 
-                    //Visualization
-                    obj = Instantiate(selectedLand.landPrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
-                    gridObject.ClearLand();
-                    gridObject.SetLand(obj.transform);
 
-                    //Update level data file
-                    editingLevel.SetLandToLevel(gridObject.GetX(), gridObject.GetZ(), selectedLand);
+            GameObject obj;
+            if(gridObject.CanCreateLand()) {
+                //Visualization
+                obj = Instantiate(selectedLand.landPrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
+                gridObject.ClearLand();
+                gridObject.SetLand(obj.transform);
+
+                //Update level data file
+                editingLevel.SetLandToLevel(gridObject.GetX(), gridObject.GetZ(), selectedLand);
+            } else {
+
+                var farmland = gridObject.GetLand().GetComponent<Farmland>();
+                if(farmland == null) return;
+
+                if(farmland.currentState == FarmlandState.Dry) {
+                    farmland.SetFarmlandState(FarmlandState.Watered);
+                } else {
+                    farmland.SetFarmlandState(FarmlandState.Dry);
                 }
             }
         }
@@ -76,6 +87,7 @@ namespace HarvestCode.LevelEditor {
                         //Update level data file
                         editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop.GetPrefab().transform);
                     } else {
+                        // Growth up crop
                         //Visualization
                         var plantable = farmland.GetCrop();
                         plantable.GrowthUp();
@@ -121,7 +133,7 @@ namespace HarvestCode.LevelEditor {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(editingLevel);
-            EditorUtility.FocusProjectWindow();
+            //EditorUtility.FocusProjectWindow();
 #endif
             editingLevel.width = 3;
             editingLevel.height = 3;
@@ -137,7 +149,7 @@ namespace HarvestCode.LevelEditor {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(editingLevel);
-            EditorUtility.FocusProjectWindow();
+            //EditorUtility.FocusProjectWindow();
 #endif
             Debug.Log("Level Saved!");
         }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using HarvestCode.Utilities;
 
 namespace HarvestCode.Core {
     public class Plantable : MonoBehaviour {
-        public enum CropState { Not_Harvestable, Harvestable, Rotten };
 
         [Header("Crop Setting")]
         [SerializeField] protected CropState cropState;
@@ -23,10 +23,10 @@ namespace HarvestCode.Core {
         protected int currentGrowthTick = 0;
 
         private void Start() {
-            UpdateState();
+            UpdateCropState();
         }
 
-        public void UpdateCrop() {
+        public void UpdateCropPhase() {
 
             if(currentPhase > 0) { 
                 cropPhases_list[currentPhase - 1].SetActive(false);
@@ -34,15 +34,45 @@ namespace HarvestCode.Core {
             cropPhases_list[currentPhase].SetActive(true);
         }
 
-        public void GrowthUp() {
+        public void UpdateCropPhase(int phase) {
+
+            if(currentPhase > 0) {
+                cropPhases_list[currentPhase - 1].SetActive(false);
+            }
+
+            cropPhases_list[phase].SetActive(true);
+        }
+
+        /// <summary>
+        /// GrowthUp method which consider farmland state.
+        /// </summary>
+        /// <param name="farmlandState"> State of farmland </param>
+        public void GrowthUp(FarmlandState farmlandState) {
 
             if(!CanGrowthUp()) return;
 
+            if(farmlandState == FarmlandState.Watered) {
+                currentPhase++;
+                UpdateCropPhase();
+                UpdateCropState();
+            } else if (farmlandState == FarmlandState.Dry) {
+                UpdateCropPhase(rottenPhase);
+                UpdateCropState(CropState.Rotten);
+            }
+
+            // Reset tick timer
+            currentGrowthTick = 0;
+        }
+
+        /// <summary>
+        /// GrowthUp method which not consider any state of farmland, just growup
+        /// </summary>
+        public void GrowthUp() {
+            if(!CanGrowthUp()) return;
+            
             currentPhase++;
-
-            UpdateCrop();
-            UpdateState();
-
+            UpdateCropPhase();
+            UpdateCropState();
 
             // Reset tick timer
             currentGrowthTick = 0;
@@ -72,7 +102,7 @@ namespace HarvestCode.Core {
             return currentPhase;
         }
 
-        private void UpdateState() {
+        private void UpdateCropState() {
             if(currentPhase >= rottenPhase) {
                 cropState = CropState.Rotten;
             } else if(currentPhase == harvestablePhase) {
@@ -80,6 +110,10 @@ namespace HarvestCode.Core {
             } else {
                 cropState = CropState.Not_Harvestable;
             }
+        }
+
+        private void UpdateCropState(CropState state) {
+            cropState = state;
         }
 
         public bool CanBeHarvest() {
