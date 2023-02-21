@@ -1,78 +1,81 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
-using RnT.ScriptableObjectArchitecture;
+using RnT.Utilities;
 
-[CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReaderSO : DescriptionBaseSO, GameInput.IGameplayActions, GameInput.ILevelEditorActions {
+namespace HarvestCode.Core {
+    [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
 
-    // Gameplay
-    public event UnityAction MoveOnGrid = delegate { };
-    public event UnityAction GameResetEvent = delegate { };
+    public class InputReaderSO : DescriptionBaseSO, GameInput.IGameplayActions, GameInput.ILevelEditorActions {
 
-    //Level Editor
-    public event UnityAction PlaceOnGrid = delegate { };
-    public event UnityAction RemoveFromGrid = delegate { };
+        // Gameplay
+        public event UnityAction MoveOnGrid = delegate { };
+        public event UnityAction GameResetEvent = delegate { };
 
-    public GameInput _gameInput;
+        //Level Editor
+        public event UnityAction PlaceOnGrid = delegate { };
+        public event UnityAction RemoveFromGrid = delegate { };
 
-    private void OnEnable() {
+        public GameInput _gameInput;
 
-        if(_gameInput == null) {
-            _gameInput = new GameInput();
-            _gameInput.Gameplay.SetCallbacks(this);
-            _gameInput.LevelEditor.SetCallbacks(this);
+        private void OnEnable() {
+
+            if(_gameInput == null) {
+                _gameInput = new GameInput();
+                _gameInput.Gameplay.SetCallbacks(this);
+                _gameInput.LevelEditor.SetCallbacks(this);
+            }
+            _gameInput.Gameplay.Enable();
+            _gameInput.LevelEditor.Enable();
         }
-        _gameInput.Gameplay.Enable();
-        _gameInput.LevelEditor.Enable();
-    }
 
-    private void OnDisable() {
-        _gameInput.Gameplay.Disable();
-        _gameInput.LevelEditor.Disable();
-    }
-
-    #region Gameplay
-    public void OnMoveOnGrid(InputAction.CallbackContext context) {
-        if(context.phase == InputActionPhase.Performed) {
-            MoveOnGrid?.Invoke();
+        private void OnDisable() {
+            _gameInput.Gameplay.Disable();
+            _gameInput.LevelEditor.Disable();
         }
-    }
 
-    public void OnGameReset(InputAction.CallbackContext context) {
-        if(context.phase == InputActionPhase.Performed) {
-            GameResetEvent?.Invoke();
+        #region Gameplay
+        public void OnMoveOnGrid(InputAction.CallbackContext context) {
+            if(context.phase == InputActionPhase.Performed) {
+                MoveOnGrid?.Invoke();
+            }
         }
-    }
-    #endregion
 
-
-    #region Level Editor
-    public void OnPlaceOnGrid(InputAction.CallbackContext context) {
-        if(context.phase == InputActionPhase.Performed) {
-            PlaceOnGrid?.Invoke();
+        public void OnGameReset(InputAction.CallbackContext context) {
+            if(context.phase == InputActionPhase.Performed) {
+                GameResetEvent?.Invoke();
+            }
         }
-    }
+        #endregion
 
 
-    public void OnRemoveFromGrid(InputAction.CallbackContext context) {
-        if(context.phase == InputActionPhase.Performed) {
-            RemoveFromGrid?.Invoke();
+        #region Level Editor
+        public void OnPlaceOnGrid(InputAction.CallbackContext context) {
+            if(context.phase == InputActionPhase.Performed) {
+                PlaceOnGrid?.Invoke();
+            }
         }
-    }
-    #endregion
 
-    public void EnableLevelEditorInput() {
-        _gameInput.Gameplay.Disable();
 
-        _gameInput.LevelEditor.Enable();
+        public void OnRemoveFromGrid(InputAction.CallbackContext context) {
+            if(context.phase == InputActionPhase.Performed) {
+                RemoveFromGrid?.Invoke();
+            }
+        }
+        #endregion
 
-    }
+        public void EnableLevelEditorInput() {
+            _gameInput.Gameplay.Disable();
 
-    public void EnableGameplayInput() {
-        _gameInput.LevelEditor.Disable();
+            _gameInput.LevelEditor.Enable();
 
-        _gameInput.Gameplay.Enable();
-        
+        }
+
+        public void EnableGameplayInput() {
+            _gameInput.LevelEditor.Disable();
+
+            _gameInput.Gameplay.Enable();
+
+        }
     }
 }

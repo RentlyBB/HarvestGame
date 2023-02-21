@@ -5,7 +5,7 @@
 /// </summary>
 ///
 
-namespace RnT.ScriptableObjectArchitecture {
+namespace RnT.Utilities {
     public class DescriptionBaseSO : SerializableScriptableObject {
         [TextArea] public string description;
     }

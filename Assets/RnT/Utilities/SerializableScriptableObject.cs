@@ -3,7 +3,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace RnT.ScriptableObjectArchitecture {
+namespace RnT.Utilities {
 #endif
 
     public class SerializableScriptableObject : ScriptableObject {

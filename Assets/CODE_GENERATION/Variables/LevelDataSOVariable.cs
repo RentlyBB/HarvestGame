@@ -1,9 +1,9 @@
+using HarvestCode.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ScriptableObjectArchitecture
-{
-	[System.Serializable]
+namespace ScriptableObjectArchitecture {
+    [System.Serializable]
 	public class LevelDataSOEvent : UnityEvent<LevelDataSO> { }
 
 	[CreateAssetMenu(

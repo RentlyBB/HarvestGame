@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEditor;
-using HarvestCode.Core;
+using HarvestCode.Utilities;
 
 namespace ScriptableObjectArchitecture.Editor {
 

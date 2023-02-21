@@ -1,5 +1,6 @@
 using UnityEngine;
 using ScriptableObjectArchitecture;
+using HarvestCode.Core;
 
 namespace HarvestCode.Systems {
     public class GameManager : MonoBehaviour {

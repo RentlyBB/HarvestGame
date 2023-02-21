@@ -1,3 +1,17 @@
-﻿{
-	"name": "ScriptableObject-Architecture"
+{
+    "name": "ScriptableObject-Architecture",
+    "rootNamespace": "",
+    "references": [
+        "GUID:82c9a60a4bd0a794fba99ef19ae576e0",
+        "GUID:db5af667ebd19b94baf41a29e6621b5d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

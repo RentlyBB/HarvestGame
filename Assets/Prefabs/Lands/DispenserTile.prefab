@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: ddeeaecb5ee56014b861c8ca11079568, type: 2}
   dispenserData: {fileID: 11400000, guid: 6bb6062702dbbaf43a62ff7af5c85890, type: 2}
-  numberOfCrops: 10
+  numberOfCrops: 2
 --- !u!114 &6029064679717682429
 MonoBehaviour:
   m_ObjectHideFlags: 0

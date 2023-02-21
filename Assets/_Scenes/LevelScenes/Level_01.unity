@@ -379,6 +379,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9299d8b0038360240911e5f1d407e13a, type: 3}
+--- !u!1 &1684074242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1484417440351426106, guid: 9299d8b0038360240911e5f1d407e13a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1684074241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1684074243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684074242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34d32f65dbec82469845e6bcaa8d35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 0}
+  _response:
+    m_PersistentCalls:
+      m_Calls: []
+  _debugValue: {fileID: 0}
 --- !u!1001 &1757325746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -462,7 +489,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: f340a7c135268f84c933a2243672d279,
+      objectReference: {fileID: 11400000, guid: 2ad541b4e5e002e468179ae4aa726358,
         type: 2}
     - target: {fileID: 1152996119303849277, guid: cab15e568268faa4c9c24b4071218c35,
         type: 3}

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-using HarvestCode.Core;
+using HarvestCode.Utilities;
 
 namespace ScriptableObjectArchitecture
 {

@@ -4,6 +4,7 @@ using TMPro;
 using RnT.Utilities;
 using HarvestCode.Core;
 using HarvestCode.Utilities;
+using HarvestCode.Tiles;
 
 #if UNITY_EDITOR
 using UnityEditor;

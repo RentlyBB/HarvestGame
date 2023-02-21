@@ -1,0 +1,17 @@
+{
+    "name": "HarvestCode.Crops",
+    "rootNamespace": "",
+    "references": [
+        "GUID:db5af667ebd19b94baf41a29e6621b5d",
+        "GUID:1c7db2f97d9e3e745ad7e1dbba1a5c42"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
