@@ -1,5 +1,5 @@
-﻿using RnT.Utilities;
-using UnityEngine;
+﻿using UnityEngine;
+using RnT.Utilities;
 
 namespace HarvestCode.Utilities {
     [System.Serializable]

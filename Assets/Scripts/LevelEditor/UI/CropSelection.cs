@@ -1,4 +1,4 @@
-using HarvestCode.Core;
+using HarvestCode.DataClasses;
 using UnityEngine;
 
 namespace HarvestCode.LevelEditor {

@@ -63,6 +63,8 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: ddeeaecb5ee56014b861c8ca11079568, type: 2}
   dispenserData: {fileID: 11400000, guid: 6bb6062702dbbaf43a62ff7af5c85890, type: 2}
   numberOfCrops: 2
+  updateSeedQueueEvent: {fileID: 11400000, guid: 4b0d740f386a239408d629f5b986f94e,
+    type: 2}
 --- !u!114 &6029064679717682429
 MonoBehaviour:
   m_ObjectHideFlags: 0

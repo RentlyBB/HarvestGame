@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using RnT.Utilities;
+using HarvestCode.DataClasses;
 using HarvestCode.Core;
 using HarvestCode.Utilities;
 using HarvestCode.Tiles;

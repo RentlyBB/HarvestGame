@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: ddeeaecb5ee56014b861c8ca11079568
   description: General player data that can be accessed from anywhere.
-  activeTool: {fileID: 0}
-  seeds_list: []
+  activeTool: {fileID: 11400000, guid: 1d0d282e15d97c14c93c82f74e3d64aa, type: 2}
+  seeds_list:
+  - {fileID: 11400000, guid: 37303ca8aeba1444192fbe3f3c4a20a6, type: 2}
+  updateSeedQueueEvent: {fileID: 11400000, guid: 4b0d740f386a239408d629f5b986f94e,
+    type: 2}

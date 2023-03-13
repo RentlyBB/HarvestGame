@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cc6c17a05f5d3e4e9533de34b4eca07, type: 3}
+  m_Script: {fileID: 11500000, guid: 09f4b306325f3314c8a9e37dabf899ab, type: 3}
   m_Name: FarmlandWateredTileData
   m_EditorClassIdentifier: 
   landPrefab: {fileID: 5718079376800468742, guid: 849be68d54a7503448af1899d20f8a53,

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09f4b306325f3314c8a9e37dabf899ab, type: 3}
-  m_Name: WaterTileData
+  m_Name: HarvestToolTileData
   m_EditorClassIdentifier: 
-  landPrefab: {fileID: 4233675630601021921, guid: 0bd1eef4913888e43ac7c768c2ca1d48,
+  landPrefab: {fileID: 3517249757479554416, guid: 97bbf0b2cc661ab4eb10d3803781d3d7,
     type: 3}

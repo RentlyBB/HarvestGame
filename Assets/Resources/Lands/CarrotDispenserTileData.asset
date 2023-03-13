@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cc6c17a05f5d3e4e9533de34b4eca07, type: 3}
+  m_Script: {fileID: 11500000, guid: 09f4b306325f3314c8a9e37dabf899ab, type: 3}
   m_Name: CarrotDispenserTileData
   m_EditorClassIdentifier: 
   landPrefab: {fileID: 3131901454619974357, guid: 3eb8174f797706f46b7d8c3980e41770,

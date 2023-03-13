@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using HarvestCode.Core;
+using HarvestCode.DataClasses;
 
 namespace HarvestCode.LevelEditor {
     public class CropButton : MonoBehaviour {
