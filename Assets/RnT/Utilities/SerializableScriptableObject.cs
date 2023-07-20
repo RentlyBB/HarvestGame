@@ -2,9 +2,9 @@
 
 #if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace RnT.Utilities {
-#endif
 
     public class SerializableScriptableObject : ScriptableObject {
         [SerializeField, HideInInspector] private string _guid;
