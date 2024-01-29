@@ -6,6 +6,7 @@ using HarvestCode.DataClasses;
 using HarvestCode.Core;
 using HarvestCode.Utilities;
 using HarvestCode.Tiles;
+using HarvestCode.Systems;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -33,6 +34,8 @@ namespace HarvestCode.LevelEditor {
 
         public TMP_InputField widthInputArea;
         public TMP_InputField heightInputArea;
+
+        public GameObject camera;
 
         public void Place(GridObject gridObject) {
 
@@ -173,6 +176,10 @@ namespace HarvestCode.LevelEditor {
             ClearLevel();
             editingLevel.InitEmptyLevel();
             onCreateNewLevel?.Invoke();
+        }
+
+        public void CenterCamera(){
+            camera.GetComponent<CameraSystem>().UpdateCameraPosition();
         }
 
         private string CreateFileName() {

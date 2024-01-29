@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using HarvestCode.LevelEditor;
+using HarvestCode.Utilities;
+using RnT.Utilities;
 
 namespace HarvestCode.Systems {
     public class CameraSystem : MonoBehaviour {
 
         [SerializeField] private Camera mainCamera;
 
-        [SerializeField] private GridInitializer gridInitializator;
+        [SerializeField] private GridXZ<GridObject> gridInitializator;
 
         [Space]
         public Vector3 bottomTarget;
@@ -14,24 +17,41 @@ namespace HarvestCode.Systems {
 
 
         private void Awake() {
-            var grid = GameObject.FindGameObjectWithTag("Grid");
+           FindGridInitializator();
+        }
 
-            if(grid != null) {
-                gridInitializator = grid.GetComponent<GridInitializer>();
+        public void FindGridInitializator(){
+            var tempGrid = GameObject.FindGameObjectWithTag("Grid");
+            if(tempGrid != null) {
+                    
+                if(tempGrid.GetComponent<GridInitializer>() != null){
+                    gridInitializator = tempGrid.GetComponent<GridInitializer>().grid;
+                }else {
+                    gridInitializator = tempGrid.GetComponent<FieldEditor>().grid;
+                }
+            }
+
+            if(gridInitializator == null){
+                Debug.LogWarning("Grid Initializator not found. " + gridInitializator);
             }
         }
 
         public void UpdateCameraPosition() {
 
-            if(mainCamera == null) return;
-            if(gridInitializator == null) return;
+            if(mainCamera == null) {
+                Debug.Log("Main camera not found.");
+                return;
+            }
+            if(gridInitializator == null) {
+                FindGridInitializator();
+            }
 
             RaycastHit hitPoint;
 
             Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hitPoint, float.MaxValue);
 
-            bottomTarget = gridInitializator.grid.GetWorldPositionCellCenter(0, 0);
-            topTarget = gridInitializator.grid.GetWorldPositionCellCenter(gridInitializator.grid.GetWidth() - 1, gridInitializator.grid.GetHeight() - 1);
+            bottomTarget = gridInitializator.GetWorldPositionCellCenter(0, 0);
+            topTarget = gridInitializator.GetWorldPositionCellCenter(gridInitializator.GetWidth() - 1, gridInitializator.GetHeight() - 1);
 
             var bounds = new Bounds(bottomTarget, Vector3.zero);
             bounds.Encapsulate(topTarget);

@@ -52,6 +52,9 @@ namespace HarvestCode.Systems {
             GridInitEvent.Raise();
         }
 
+
+        // Spawn tile "animation"
+        // Not neccesary 
         private IEnumerator SpawningGridObjects() {
 
             // Create grid with object from levelData
