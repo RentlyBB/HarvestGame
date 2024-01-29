@@ -460,11 +460,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1860347920, guid: 9299d8b0038360240911e5f1d407e13a, type: 3}
-      propertyPath: _inputReader
-      value: 
-      objectReference: {fileID: 11400000, guid: fb20446b4c19dbb4592cef5846cdbf10,
-        type: 2}
     - target: {fileID: 1484417440351426086, guid: 9299d8b0038360240911e5f1d407e13a,
         type: 3}
       propertyPath: m_RootOrder

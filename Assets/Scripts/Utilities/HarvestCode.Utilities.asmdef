@@ -1,0 +1,16 @@
+{
+    "name": "HarvestCode.Utilities",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1c7db2f97d9e3e745ad7e1dbba1a5c42"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,18 +1,19 @@
+using HarvestCode.DataClasses;
 using UnityEngine;
 
 namespace HarvestCode.LevelEditor {
     public class CropSelection : MonoBehaviour {
 
-        private Transform[] crops;
+        private CropDataSO[] crops;
         public GameObject buttonPrefab;
 
         private void Start() {
-            crops = Resources.LoadAll<Transform>("Crops");
+            crops = Resources.LoadAll<CropDataSO>("Crops");
 
-            foreach(Transform crop in crops) {
+            foreach(CropDataSO crop in crops) {
                 GameObject newButton = Instantiate(buttonPrefab);
                 newButton.transform.SetParent(transform, false);
-                newButton.GetComponent<CropButton>().cropToSelect = crop;
+                newButton.GetComponent<CropButton>().cropData = crop;
             }
         }
     }

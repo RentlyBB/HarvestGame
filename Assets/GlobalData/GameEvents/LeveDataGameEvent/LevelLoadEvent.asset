@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf49e0cd970b0f48b95f939cd004354, type: 3}
   m_Name: LevelLoadEvent
   m_EditorClassIdentifier: 
-  _debugValue: {fileID: 0}
+  _debugValue: {fileID: 11400000, guid: 2ad541b4e5e002e468179ae4aa726358, type: 2}

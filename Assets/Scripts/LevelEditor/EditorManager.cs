@@ -2,7 +2,11 @@ using UnityEngine;
 using System;
 using TMPro;
 using RnT.Utilities;
+using HarvestCode.DataClasses;
 using HarvestCode.Core;
+using HarvestCode.Utilities;
+using HarvestCode.Tiles;
+using HarvestCode.Systems;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,8 +24,8 @@ namespace HarvestCode.LevelEditor {
 
         [SerializeField] public LevelDataSO editingLevel;
 
-        public LandSO selectedLand;
-        public Transform selectedCrop;
+        public LandDataSO selectedLand;
+        public CropDataSO selectedCrop;
 
         public GridXZ<GridObject> grid;
 
@@ -30,6 +34,8 @@ namespace HarvestCode.LevelEditor {
 
         public TMP_InputField widthInputArea;
         public TMP_InputField heightInputArea;
+
+        public GameObject camera;
 
         public void Place(GridObject gridObject) {
 
@@ -44,17 +50,27 @@ namespace HarvestCode.LevelEditor {
         }
 
         private void PlaceLandOnGrid(GridObject gridObject) {
-            if(selectedLand != null) {
-                GameObject obj;
-                if(gridObject.CanCreateLand()) {
+            if(selectedLand == null) return;
 
-                    //Visualization
-                    obj = Instantiate(selectedLand.landPrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
-                    gridObject.ClearLand();
-                    gridObject.SetLand(obj.transform);
 
-                    //Update level data file
-                    editingLevel.SetLandToLevel(gridObject.GetX(), gridObject.GetZ(), selectedLand);
+            GameObject obj;
+            if(gridObject.CanCreateLand()) {
+                //Visualization
+                obj = Instantiate(selectedLand.landPrefab.gameObject, grid.GetWorldPositionCellCenter(gridObject.GetX(), gridObject.GetZ()), Quaternion.identity);
+                gridObject.ClearLand();
+                gridObject.SetLand(obj.transform);
+
+                //Update level data file
+                editingLevel.SetLandToLevel(gridObject.GetX(), gridObject.GetZ(), selectedLand);
+            } else {
+
+                var farmland = gridObject.GetLand().GetComponent<Farmland>();
+                if(farmland == null) return;
+
+                if(farmland.currentState == FarmlandState.Dry) {
+                    farmland.SetFarmlandState(FarmlandState.Watered);
+                } else {
+                    farmland.SetFarmlandState(FarmlandState.Dry);
                 }
             }
         }
@@ -71,11 +87,12 @@ namespace HarvestCode.LevelEditor {
 
                     if(farmland.GetCrop() == null) {
                         //Visualization
-                        farmland.PlantCrop(selectedCrop);
+                        farmland.PlantCrop(selectedCrop.GetPrefab().transform);
 
                         //Update level data file
-                        editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop);
+                        editingLevel.SetCropOnLand(gridObject.GetX(), gridObject.GetZ(), selectedCrop.GetPrefab().transform);
                     } else {
+                        // Growth up crop
                         //Visualization
                         var plantable = farmland.GetCrop();
                         plantable.GrowthUp();
@@ -100,8 +117,11 @@ namespace HarvestCode.LevelEditor {
         }
 
         public void AddSeed() {
+            Debug.LogWarning("This is not implemented, cuz of crop seed reworked.");
             if(selectedCrop == null) return;
-            editingLevel.AddCropSeedToList(selectedCrop);
+
+            
+           // editingLevel.AddCropSeedToList(selectedCrop);
         }
 
         public void RemoveSeed() {
@@ -118,7 +138,7 @@ namespace HarvestCode.LevelEditor {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(editingLevel);
-            EditorUtility.FocusProjectWindow();
+            //EditorUtility.FocusProjectWindow();
 #endif
             editingLevel.width = 3;
             editingLevel.height = 3;
@@ -134,7 +154,7 @@ namespace HarvestCode.LevelEditor {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(editingLevel);
-            EditorUtility.FocusProjectWindow();
+            //EditorUtility.FocusProjectWindow();
 #endif
             Debug.Log("Level Saved!");
         }
@@ -156,6 +176,10 @@ namespace HarvestCode.LevelEditor {
             ClearLevel();
             editingLevel.InitEmptyLevel();
             onCreateNewLevel?.Invoke();
+        }
+
+        public void CenterCamera(){
+            camera.GetComponent<CameraSystem>().UpdateCameraPosition();
         }
 
         private string CreateFileName() {

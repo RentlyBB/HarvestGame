@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ScriptableObjectArchitecture;
+using HarvestCode.Utilities;
+using HarvestCode.Tiles;
 
-namespace HarvestCode.Core {
+namespace HarvestCode.Player {
     public class GridMovement : MonoBehaviour {
 
         [SerializeField] private float movementSpeed;
@@ -15,7 +17,7 @@ namespace HarvestCode.Core {
         private List<GridObject> nextMoves = new List<GridObject>();
 
         // Last grid object where player was on
-        private GridObject lastPosition = null;
+        private GridObject lastPosition = new GridObject();
 
         private PlayerBehaviour interactor;
 
@@ -44,7 +46,7 @@ namespace HarvestCode.Core {
                 return;
             }
 
-            if(lastPosition == null) {
+            if(lastPosition.GetGrid() == null) {
                 nextMoves.Add(gridObject);
                 return;
             }
@@ -75,7 +77,7 @@ namespace HarvestCode.Core {
 
             if(Vector3.Distance(transform.position, targetPosition) < 0.001f) {
                 lastPosition = nextMoves[0];
-
+                
                 interactor.InteractWithTile(lastPosition);
 
                 OnMovementEndEvent.Raise();
@@ -118,7 +120,7 @@ namespace HarvestCode.Core {
         }
 
         private void ResetMovement() {
-            lastPosition = null;
+            lastPosition = new GridObject();
             nextMoves = new List<GridObject>();
         }
     }

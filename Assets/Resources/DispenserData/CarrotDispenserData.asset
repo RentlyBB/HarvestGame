@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310b8aebd39fb1245ad4af0567181364, type: 3}
+  m_Name: CarrotDispenserData
+  m_EditorClassIdentifier: 
+  _guid: 6bb6062702dbbaf43a62ff7af5c85890
+  description: 
+  cropData: {fileID: 11400000, guid: 37303ca8aeba1444192fbe3f3c4a20a6, type: 2}
+  dispenserVisual: {fileID: 6924976993119134711, guid: 127facbe6ab066d49b3b86f4c0fae50c,
+    type: 3}

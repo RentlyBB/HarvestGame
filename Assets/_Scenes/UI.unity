@@ -136,9 +136,8 @@ GameObject:
   - component: {fileID: 112350598}
   - component: {fileID: 112350597}
   - component: {fileID: 112350596}
-  - component: {fileID: 112350595}
   - component: {fileID: 112350600}
-  - component: {fileID: 112350601}
+  - component: {fileID: 112350595}
   m_Layer: 5
   m_Name: SeedQueue
   m_TagString: Untagged
@@ -191,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7edfda24e67cd34a927193fa2b4a4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ddeeaecb5ee56014b861c8ca11079568, type: 2}
   iconPrefab: {fileID: 8082643291404052792, guid: 4e926a23fc0f5fe4b8cc24c8de0bfeab,
     type: 3}
 --- !u!114 &112350597
@@ -266,39 +266,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 112350593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8bcda1edb52a98428adffb2cd51a4aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
-  _event: {fileID: 11400000, guid: 9ebab87ac58f80b46bfa230c566c3af4, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 112350596}
-        m_TargetAssemblyTypeName: HarvestCode.UI.SeedQueue, Assembly-CSharp
-        m_MethodName: GetCropSeeds
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _debugValue: {fileID: 0}
---- !u!114 &112350601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112350593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -312,8 +279,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112350596}
-        m_TargetAssemblyTypeName: HarvestCode.UI.SeedQueue, Assembly-CSharp
-        m_MethodName: UpdateUI
+        m_TargetAssemblyTypeName: HarvestCode.UI.SeedQueue, HarvestCode.UI
+        m_MethodName: UpdateQueueUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

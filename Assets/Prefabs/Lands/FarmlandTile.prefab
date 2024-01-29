@@ -31,6 +31,8 @@ Transform:
   m_Children:
   - {fileID: 6927489966481964710}
   - {fileID: 6423965105704217104}
+  - {fileID: 6352183612905615280}
+  - {fileID: 7597597098179144590}
   m_Father: {fileID: 6476319157060823691}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,6 +68,7 @@ GameObject:
   - component: {fileID: 7471541788757746146}
   - component: {fileID: 7912046504095744093}
   - component: {fileID: 3816763154349139192}
+  - component: {fileID: -6838087677117712675}
   m_Layer: 0
   m_Name: FarmlandTile
   m_TagString: Untagged
@@ -127,9 +130,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a04be656b2a8424f96780faaea2373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dryFarmland: {fileID: 8488310032173839099}
-  wateredFarmland: {fileID: 6813191816843147316}
+  playerData: {fileID: 11400000, guid: ddeeaecb5ee56014b861c8ca11079568, type: 2}
+  dryFarmland: {fileID: 6011370899033011466}
+  wateredFarmland: {fileID: 7078469913529151796}
   currentState: 1
+--- !u!114 &-6838087677117712675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476319157060823687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 1
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: f1db2f9925e09d2499447de235baaf76,
+    type: 2}
+  _event: {fileID: 11400000, guid: f1db2f9925e09d2499447de235baaf76, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3816763154349139192}
+        m_TargetAssemblyTypeName: HarvestCode.Core.Farmland, HarvestCode.Core
+        m_MethodName: GrowthUpCrop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6813191816843147316
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6423965105704217104
 Transform:
   m_ObjectHideFlags: 0
@@ -324,3 +361,189 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &6894382290549770331
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3174389005296228403}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_Name
+      value: Farmland
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8003c895f00b83c42a20054f14424d1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8003c895f00b83c42a20054f14424d1e, type: 3}
+--- !u!1 &6011370899033011466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8003c895f00b83c42a20054f14424d1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6894382290549770331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6352183612905615280 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8003c895f00b83c42a20054f14424d1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6894382290549770331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7996896725841005669
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3174389005296228403}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_Name
+      value: WateredFarmland
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a350024ef227494bbb0eb2e668c8ac0, type: 3}
+--- !u!1 &7078469913529151796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7996896725841005669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7597597098179144590 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5a350024ef227494bbb0eb2e668c8ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7996896725841005669}
+  m_PrefabAsset: {fileID: 0}

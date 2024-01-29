@@ -1,5 +1,5 @@
 using UnityEngine;
-using HarvestCode.Core;
+using HarvestCode.Utilities;
 
 namespace ScriptableObjectArchitecture
 {
