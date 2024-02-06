@@ -42,9 +42,8 @@ namespace HarvestCode.Systems {
                 Debug.Log("Main camera not found.");
                 return;
             }
-            if(gridInitializator == null) {
-                FindGridInitializator();
-            }
+            
+            FindGridInitializator();
 
             RaycastHit hitPoint;
 
