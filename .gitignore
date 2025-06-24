@@ -70,3 +70,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Settings/URP-Performant.asset
+Assets/Settings/URP-Balanced.asset
+Assets/Outsource/Lowpoly Flowers/Materials/blinn2.mat
+.idea/.idea.HarvestGame/.idea/workspace.xml
+.idea/.idea.HarvestGame/.idea/vcs.xml
+.idea/.idea.HarvestGame/.idea/projectSettingsUpdater.xml
+.idea/.idea.HarvestGame/.idea/indexLayout.xml
